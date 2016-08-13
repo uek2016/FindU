@@ -187,3 +187,15 @@ app.get('/getAuthById', function(req, res) {
 	});
 
 });
+
+///// 返回wid
+app.get('/api/exwork/addexwork',function(req,res){
+	connection.query('INSERT INTO uek_extra_work SET ?', {
+		ctime: date.getTime(),
+		mtime: date.getTime(),
+		is_del: 0,
+	}, function(err, result) {
+		if (err) throw err;
+		res.json(result.insertId);
+	});
+})
