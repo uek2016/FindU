@@ -199,3 +199,12 @@ app.get('/api/exwork/addexwork',function(req,res){
 		res.json(result.insertId);
 	});
 })
+
+//// 根据uid获取所有条目
+app.get('/api/exwork/getAllworkByUid',function(req,res){
+	var uid = req.query.uid;
+	connection.query('SELECT * from uek_extra_work where uid = ?', [columns,uid], function(err, rows, fields) {
+		if (err) throw err;
+		res.json(rows);
+	});
+})
