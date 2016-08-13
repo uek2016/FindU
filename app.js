@@ -11,34 +11,32 @@ app.use(cookieParser());
 
 
 app.get('/app/login', function(req, res) {
-	res.sendFile(__dirname + '/phone/m_login.html');
+	res.sendFile(__dirname + '/front/m_login.html');
 });
 
 app.get('/app/copyright', function(req, res) {
-	res.sendFile(__dirname + '/phone/slide.html');
-});
-
-app.get('/login', function(req, res) {
-	res.sendFile(__dirname + '/pc/login.html');
+	res.sendFile(__dirname + '/front/slide.html');
 });
 
 app.get('/app/', function(req, res) {
-	if(req.cookies.__uek__){
-		res.sendFile(__dirname + '/phone/m_index.html');
-	}else{
-		res.redirect('/app/login');
-	}
+	// if(req.cookies.__uek__){
+		res.sendFile(__dirname + '/front/m_index.html');
+	// }else{
+		// res.redirect('/app/login');
+	// }
+});
+
+app.get('/login', function(req, res) {
+	res.sendFile(__dirname + '/admin/login.html');
 });
 
 app.get('/', function(req, res) {
-	
   var account = req.cookies.__uek__;
-
 	var columns = ['authority'];
 	connection.query('SELECT ?? from user where phone = ?', [columns, account], function(err, rows, fields) {
 		if (err) throw err;
 		if ( rows[0] && rows[0].authority === 1 ){
-			res.sendFile(__dirname + '/pc/index.html');
+			res.sendFile(__dirname + '/admin/index.html');
 		}else{
 			res.redirect('/login');
 		}
@@ -61,7 +59,7 @@ var connection = mysql.createConnection({
 
 ///////////////////////////////////////////////////////////////////////////////
 app.get('/checkUser', function(req, res) {
-  
+
 	var hash = crypto.createHash("md5");
 	hash.update(new Buffer(req.query.password, "binary"));
 	var encode = hash.digest('hex');

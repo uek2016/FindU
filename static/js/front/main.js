@@ -79,8 +79,6 @@ $(function() {
 		}
 
 		off = $('.header').height() + $('.sub-header').height() + $('.fixedindex').height();
-
-		
 		
 	}
 
@@ -119,7 +117,6 @@ $(function() {
 	//头部固定字母条
 
 	$(window).on('scroll', function() {
-		$(".lxr_zhezhao,lxr_copyright").hide();
 		var s = $(this).scrollTop() + off;
 		if(toplist) {
 			toplist.forEach(function(v) {
