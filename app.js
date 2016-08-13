@@ -223,7 +223,7 @@ app.get('/api/exwork/updateWorkByUid',function(req,res){
 })
 
 ///// 根据wid删除加班条目
-app.get('/api/exwork/updateWorkByUid',function(req,res){
+app.get('/api/exwork/deleteWorkByUid',function(req,res){
 	connection.query('UPDATE uek_extra_work SET is_del = 1 WHERE uid = ? ',
 	[q.wid], function(err, results) {
 		if (err) {
