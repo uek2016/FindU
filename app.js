@@ -190,6 +190,7 @@ app.get('/getAuthById', function(req, res) {
 
 ///// 返回wid
 app.get('/api/exwork/addexwork',function(req,res){
+	var date = new Date();
 	connection.query('INSERT INTO uek_extra_work SET ?', {
 		ctime: date.getTime(),
 		mtime: date.getTime(),
@@ -203,7 +204,7 @@ app.get('/api/exwork/addexwork',function(req,res){
 //// 根据uid获取所有条目
 app.get('/api/exwork/getAllworkByUid',function(req,res){
 	var uid = req.query.uid;
-	connection.query('SELECT * from uek_extra_work where uid = ?', [columns,uid], function(err, rows, fields) {
+	connection.query('SELECT * from uek_extra_work where uid = ?', [uid], function(err, rows, fields) {
 		if (err) throw err;
 		res.json(rows);
 	});
@@ -212,8 +213,9 @@ app.get('/api/exwork/getAllworkByUid',function(req,res){
 //// 根据wid更新加班条目
 app.get('/api/exwork/updateWorkByUid',function(req,res){
 	var q = req.query;
-	connection.query('UPDATE uek_extra_work SET uid = ?, w_title = ?, w_keywords = ?, w_progress = ?, w_start_time = ?,  w_end_time = ?, w_date = ? WHERE uid = ? ',
-	[q.uid, q.w_title, q.w_keywords, q.w_progress, q.w_start_time, q.w_end_time,q.w_date, q.uid], function(err, results) {
+	console.log(q);
+	connection.query('UPDATE uek_extra_work SET uid = ?, w_title = ?, w_keywords = ?, w_progress = ?, w_start_time = ?,  w_end_time = ?, w_date = ? WHERE wid = ? ',
+	[q.uid, q.w_title, q.w_keywords, q.w_progress, q.w_start_time, q.w_end_time,q.w_date, q.wid], function(err, results) {
 		if (err) {
 			res.json(false);
 		} else {
@@ -223,9 +225,9 @@ app.get('/api/exwork/updateWorkByUid',function(req,res){
 })
 
 ///// 根据wid删除加班条目
-app.get('/api/exwork/deleteWorkByUid',function(req,res){
-	connection.query('UPDATE uek_extra_work SET is_del = 1 WHERE uid = ? ',
-	[q.wid], function(err, results) {
+app.get('/api/exwork/deleteWorkByWid',function(req,res){
+	connection.query('UPDATE uek_extra_work SET is_del = 1 WHERE wid = ? ',
+	[req.query.wid], function(err, results) {
 		if (err) {
 			res.json(false);
 		} else {

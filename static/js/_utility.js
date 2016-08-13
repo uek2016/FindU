@@ -56,13 +56,13 @@ var API = {
 	
 	///////  extra_work 相关的api
 	addExWork: function(){
-		return $.get('/api/exwork/addexwork', obj).done(function(data) {
+		return $.get('/api/exwork/addexwork').done(function(data) {
 			return data;
 		}, 'json');
 	},
 
-	deleteExWorkByUid: function(uid){
-		return $.get('/api/exwork/deleteWorkByUid', {uid:uid}).done(function(data) {
+	deleteExWorkByWid: function(wid){
+		return $.get('/api/exwork/deleteWorkByWid', {wid:wid}).done(function(data) {
 			return data;
 		}, 'json');
 	},

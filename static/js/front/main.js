@@ -15,14 +15,10 @@ $(function() {
 	var off;
 
 	var sync = function() {
-		$.ajax({
-			url: "/getAlluser",
-			dataType: "jsonp",
-			success: function(list) {
-				contacts = list;
-				render(contacts);
-				localStorage.__findu__data = JSON.stringify(contacts);
-			},
+		API.getAllUser().then(function(list) {
+			contacts = list;
+			render(contacts);
+			localStorage.__findu__data = JSON.stringify(contacts);
 		})
 	}
 
@@ -79,7 +75,7 @@ $(function() {
 		}
 
 		off = $('.header').height() + $('.sub-header').height() + $('.fixedindex').height();
-		
+
 	}
 
 	/////////////////////////////////////////////////////////
@@ -172,4 +168,30 @@ $(function() {
 		localStorage.sgqreset = 'true';
 	})
 
+})
+//////////////////测试API代码
+
+$(function(){
+	API.addExWork().then(function(data){
+		console.log(data);		
+	});
+	var date = new Date().getTime();
+	API.updateExWorkByUid({
+		wid:2,
+		uid:12,
+		w_title:'abcdef',
+		w_keywords:'abcdef',
+		w_progress:89,
+		w_start_time:date,
+		w_end_time:date,
+		w_date:date,
+	}).then(function(data){
+		console.log(data);	
+	})
+	API.deleteExWorkByWid(2).then(function(data){
+		console.log(data);
+	})
+	API.getAllExWorkByUid(12).then(function(data){
+		console.log(data);	
+	})
 })
