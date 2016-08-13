@@ -208,3 +208,16 @@ app.get('/api/exwork/getAllworkByUid',function(req,res){
 		res.json(rows);
 	});
 })
+
+//// 根据wid更新加班条目
+app.get('/api/exwork/updateWorkByUid',function(req,res){
+	var q = req.query;
+	connection.query('UPDATE uek_extra_work SET uid = ?, w_title = ?, w_keywords = ?, w_progress = ?, w_start_time = ?,  w_end_time = ?, w_date = ? WHERE uid = ? ',
+	[q.uid, q.w_title, q.w_keywords, q.w_progress, q.w_start_time, q.w_end_time,q.w_date, q.uid], function(err, results) {
+		if (err) {
+			res.json(false);
+		} else {
+			res.json(true);
+		}
+	});
+})
