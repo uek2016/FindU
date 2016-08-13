@@ -9,7 +9,7 @@ app.use(express.static(__dirname + '/static/'));
 app.use(cookieParser());
 
 
-
+///////////////////////// 路由 ///////////////////////////////////
 app.get('/app/login', function(req, res) {
 	res.sendFile(__dirname + '/front/m_login.html');
 });
@@ -43,6 +43,8 @@ app.get('/', function(req, res) {
 	});
 });
 
+////////////////////API列表////////////////////////////////////
+
 app.listen(3000, function() {
 	console.log('Example app listening on port 3000!');
 });
@@ -57,7 +59,6 @@ var connection = mysql.createConnection({
 });
 
 
-///////////////////////////////////////////////////////////////////////////////
 app.get('/checkUser', function(req, res) {
 
 	var hash = crypto.createHash("md5");
@@ -69,6 +70,7 @@ app.get('/checkUser', function(req, res) {
 			res.jsonp({
 				phone: req.query.account,
 				password: result[0].password,
+				uid:result[0].uid,
 			});
 		} else {
 			res.jsonp(false);
