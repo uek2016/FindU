@@ -13,7 +13,9 @@ app.use(cookieParser());
 app.get('/app/login', function(req, res) {
 	res.sendFile(__dirname + '/front/m_login.html');
 });
-
+app.get('/app/reset', function(req, res) {
+	res.sendFile(__dirname + '/front/m_reset.html');
+});
 app.get('/app/copyright', function(req, res) {
 	res.sendFile(__dirname + '/front/slide.html');
 });
