@@ -29,11 +29,11 @@ CREATE TABLE `uek_extra_work` (
   `w_title` varchar(255) NOT NULL,
   `w_keywords` varchar(255) NOT NULL,
   `w_progress` int(11) NOT NULL,
-  `w_start_time` int(13) NOT NULL,
-  `w_end_time` int(13) NOT NULL,
-  `ctime` int(13) NOT NULL,
-  `mtime` int(13) NOT NULL,
-  `w_date` int(13) NOT NULL,
+  `w_start_time` bigint(13) NOT NULL,
+  `w_end_time` bigint(13) NOT NULL,
+  `ctime` bigint(13) NOT NULL,
+  `mtime` bigint(13) NOT NULL,
+  `w_date` bigint(13) NOT NULL,
   `is_del` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -53,8 +53,8 @@ CREATE TABLE `user` (
   `authority` int(11) NOT NULL,
   `phone` varchar(255) NOT NULL,
   `tel` varchar(255) NOT NULL,
-  `ctime` int(13) NOT NULL,
-  `mtime` int(13) NOT NULL,
+  `ctime` bigint(13) NOT NULL,
+  `mtime` bigint(13) NOT NULL,
   `is_del` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
