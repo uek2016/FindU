@@ -3,11 +3,11 @@ var pinyin = require('pinyin');
 var mysql = require('mysql');
 var crypto = require('crypto');
 var cookieParser = require('cookie-parser');
+var _ = require('underscore');
 
 var app = express();
 app.use(express.static(__dirname + '/static/'));
 app.use(cookieParser());
-
 
 ///////////////////////// 路由 ///////////////////////////////////
 app.get('/app/login', function(req, res) {
@@ -22,9 +22,9 @@ app.get('/app/copyright', function(req, res) {
 
 app.get('/app/', function(req, res) {
 	// if(req.cookies.__uek__){
-		res.sendFile(__dirname + '/front/m_index.html');
+	res.sendFile(__dirname + '/front/m_index.html');
 	// }else{
-		// res.redirect('/app/login');
+	// res.redirect('/app/login');
 	// }
 });
 
@@ -33,13 +33,13 @@ app.get('/login', function(req, res) {
 });
 
 app.get('/', function(req, res) {
-  var account = req.cookies.__uek__;
+	var account = req.cookies.__uek__;
 	var columns = ['authority'];
 	connection.query('SELECT ?? from user where phone = ?', [columns, account], function(err, rows, fields) {
-		if (err) throw err;
-		if ( rows[0] && rows[0].authority === 1 ){
+		if(err) throw err;
+		if(rows[0] && rows[0].authority === 1) {
 			res.sendFile(__dirname + '/admin/index.html');
-		}else{
+		} else {
 			res.redirect('/login');
 		}
 	});
@@ -60,7 +60,6 @@ var connection = mysql.createConnection({
 	// socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock',
 });
 
-
 app.get('/checkUser', function(req, res) {
 
 	var hash = crypto.createHash("md5");
@@ -68,11 +67,11 @@ app.get('/checkUser', function(req, res) {
 	var encode = hash.digest('hex');
 
 	connection.query('SELECT ?? FROM user where phone = ?', ['password', req.query.account], function(err, result) {
-		if (result[0] && (result[0].password === encode)) {
+		if(result[0] && (result[0].password === encode)) {
 			res.jsonp({
 				phone: req.query.account,
 				password: result[0].password,
-				uid:result[0].uid,
+				uid: result[0].uid,
 			});
 		} else {
 			res.jsonp(false);
@@ -87,7 +86,7 @@ app.get('/resetPasswordByAccount', function(req, res) {
 	var password = hash.digest('hex');
 
 	connection.query('UPDATE user SET password = ?  WHERE phone = ?', [password, req.query.account], function(err, result) {
-		if (err) {
+		if(err) {
 			res.jsonp(false);
 		} else {
 			res.jsonp(true);
@@ -100,7 +99,7 @@ app.get('/setPassword', function(req, res) {
 	hash.update(new Buffer(req.query.password, "binary"));
 	var password = hash.digest('hex');
 	connection.query('UPDATE user SET password = ?  WHERE phone = ?', [password, req.query.account], function(err, result) {
-		if (err) {
+		if(err) {
 			res.jsonp(false);
 		} else {
 			res.jsonp(true);
@@ -123,17 +122,14 @@ app.get('/addUser', function(req, res) {
 		is_del: 0,
 		password: encode,
 	}, function(err, result) {
-		if (err) throw err;
+		if(err) throw err;
 		res.json(result.insertId);
 	});
 });
 
-
-
-
 app.get('/deleteUserById', function(req, res) {
 	connection.query('DELETE FROM user WHERE uid = ?', [req.query.uid], function(err, result) {
-		if (err) {
+		if(err) {
 			res.json(false);
 		} else {
 			res.json(true);
@@ -155,7 +151,7 @@ app.get('/updateUserById', function(req, res) {
 	var sindex = account[0];
 
 	connection.query('UPDATE user SET uname = ?, phone = ?, tel = ?, account = ?, sindex = ?  WHERE uid = ?', [q.uname.trim(), q.phone.trim(), q.tel.trim(), account, sindex, q.uid], function(err, results) {
-		if (err) {
+		if(err) {
 			res.json(false);
 		} else {
 			res.json(true);
@@ -166,7 +162,7 @@ app.get('/updateUserById', function(req, res) {
 app.get('/getAllUser', function(req, res) {
 	var columns = ['account', 'uname', 'phone', 'tel', 'uid', 'sindex'];
 	connection.query('SELECT ?? from user', [columns], function(err, rows, fields) {
-		if (err) throw err;
+		if(err) throw err;
 		res.jsonp(rows);
 	});
 });
@@ -175,7 +171,7 @@ app.get('/getUserById', function(req, res) {
 	var uid = req.query.uid;
 	var columns = ['uname', 'phone', 'tel', 'uid', 'sindex'];
 	connection.query('SELECT ?? from user where uid = ?', [columns, uid], function(err, rows, fields) {
-		if (err) throw err;
+		if(err) throw err;
 		res.jsonp(rows[0]);
 	});
 });
@@ -184,41 +180,39 @@ app.get('/getAuthById', function(req, res) {
 	var uid = req.query.uid;
 	var columns = ['authority'];
 	connection.query('SELECT ?? from user where uid = ?', [columns, uid], function(err, rows, fields) {
-		if (err) throw err;
+		if(err) throw err;
 		res.jsonp(rows[0].authority);
 	});
 
 });
 
 ///// 返回wid
-app.get('/api/exwork/addexwork',function(req,res){
+app.get('/api/exwork/addexwork', function(req, res) {
 	var date = new Date();
 	connection.query('INSERT INTO uek_extra_work SET ?', {
 		ctime: date.getTime(),
 		mtime: date.getTime(),
 		is_del: 0,
 	}, function(err, result) {
-		if (err) throw err;
+		if(err) throw err;
 		res.json(result.insertId);
 	});
 })
 
 //// 根据uid获取所有条目
-app.get('/api/exwork/getAllworkByUid',function(req,res){
+app.get('/api/exwork/getAllworkByUid', function(req, res) {
 	var uid = req.query.uid;
 	connection.query('SELECT * from uek_extra_work where uid = ?', [uid], function(err, rows, fields) {
-		if (err) throw err;
+		if(err) throw err;
 		res.json(rows);
 	});
 })
 
 //// 根据wid更新加班条目
-app.get('/api/exwork/updateWorkByUid',function(req,res){
+app.get('/api/exwork/updateWorkByUid', function(req, res) {
 	var q = req.query;
-	console.log(q);
-	connection.query('UPDATE uek_extra_work SET uid = ?, w_title = ?, w_keywords = ?, w_progress = ?, w_start_time = ?,  w_end_time = ?, w_date = ? WHERE wid = ? ',
-	[q.uid, q.w_title, q.w_keywords, q.w_progress, q.w_start_time, q.w_end_time,q.w_date, q.wid], function(err, results) {
-		if (err) {
+	connection.query('UPDATE uek_extra_work SET uid = ?, w_title = ?, w_keywords = ?, w_progress = ?, w_start_time = ?,  w_end_time = ?, w_date = ? WHERE wid = ? ', [q.uid, q.w_title, q.w_keywords, q.w_progress, q.w_start_time, q.w_end_time, q.w_date, q.wid], function(err, results) {
+		if(err) {
 			res.json(false);
 		} else {
 			res.json(true);
@@ -227,13 +221,71 @@ app.get('/api/exwork/updateWorkByUid',function(req,res){
 })
 
 ///// 根据wid删除加班条目
-app.get('/api/exwork/deleteWorkByWid',function(req,res){
-	connection.query('UPDATE uek_extra_work SET is_del = 1 WHERE wid = ? ',
-	[req.query.wid], function(err, results) {
-		if (err) {
+app.get('/api/exwork/deleteWorkByWid', function(req, res) {
+	connection.query('UPDATE uek_extra_work SET is_del = 1 WHERE wid = ? ', [req.query.wid], function(err, results) {
+		if(err) {
 			res.json(false);
 		} else {
 			res.json(true);
 		}
 	});
 })
+
+////////获取所有的加班条目  后台使用
+
+app.get('/api/exwork/getAllWork', function(req, res) {
+	var columns = ['wid', 'user.uid', 'uname', 'w_title', 'w_keywords', 'w_progress', 'w_start_time', 'w_end_time', 'w_date', 'uek_extra_work.is_del'];
+	connection.query('SELECT ?? FROM uek_extra_work LEFT JOIN user ON uek_extra_work.uid = user.uid', [columns],
+		function(err, rows) {
+			if(err) throw err;
+			res.json(rows);
+		})
+});
+
+/////////把所有的work条目导出为excel表格
+
+var nodeExcel = require('excel-export');
+
+app.get('/api/exwork/excel', function(req, res) {
+	//检索数据  获取所有用户一段时间内的所有加班记录
+	var columns = ['wid', 'user.uid', 'uname', 'w_title', 'w_keywords', 'w_progress', 'w_start_time', 'w_end_time', 'w_date', 'uek_extra_work.is_del'];
+	connection.query('SELECT ?? FROM uek_extra_work LEFT JOIN user ON uek_extra_work.uid = user.uid', [columns],
+		function(err, rows) {
+			if(err) throw err;
+
+			var conf = {};
+			conf.stylesXmlFile = __dirname + '/styles.xml';
+			conf.cols = [{
+				caption: '日期,姓名',
+				type: 'string',
+			}];
+			conf.rows = [];
+
+			//表格中的行  即所有人的姓名
+			var names = _.uniq(rows.map(function(v) {
+				return v.uname;
+			}));
+			names.forEach(function(v) {
+				conf.cols.push({
+					caption: v,
+					type: 'sting'
+				});
+			});
+
+			//表格中的列  即这个月从1日到31日;
+			var dates = _.range(30).map(function(v) {
+				return '2016年7月' + (v + 1) + '日';
+			})
+			dates.forEach(function(v) {
+				var row = [v];
+				names.forEach(function(v) {
+					row.push(v)
+				});
+				conf.rows.push(row);
+			})
+			var result = nodeExcel.execute(conf);
+			res.setHeader('Content-Type', 'application/vnd.openxmlformats');
+			res.setHeader("Content-Disposition", "attachment; filename=" + "Report.xlsx");
+			res.end(result, 'binary');
+		})
+});
