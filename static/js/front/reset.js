@@ -172,7 +172,7 @@ $(function() {
 //								$(".wlh-zhezhao").delay(800).fadeOut(200);
 //								$(".wlh-login").delay(1000).fadeIn(200);
 //								$(".mylogin>input").val("");
-								var sgq_login=plus.webview.create("http://192.167.1.102:3000/app/login","sgq_login");
+								var sgq_login=plus.webview.create("./login","sgq_login");
 								sgq_login.show();
 								plus.webview.close("sgq_reset");
 								

@@ -201,11 +201,14 @@ $(function() {
 			data: "account=" + us + "&password=" + up,
 			success: function(sdata) {
 				if(sdata) {
+					
 					if(sdata.password=="e10adc3949ba59abbe56e057f20f883e"){
-						var sgq_reset=plus.webview.create("http://192.167.1.102:3000/app/reset","sgq_reset");
+						localStorage.sgqphone=JSON.stringify(sdata);
+						var sgq_reset=plus.webview.create("./reset","sgq_reset");
 						sgq_reset.show();
 						sgq_reset.onclose=function(){
-							$(".wlh-ps>label.error").css("display", "none")
+							$(".wlh-ps>label.error").css("display", "none");
+							$("[name='username']").val(JSON.parse(localStorage.sgqphone).phone);
 							$("[name='userps']").val("");
 						}
 							
