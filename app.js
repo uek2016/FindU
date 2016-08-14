@@ -35,6 +35,12 @@ app.get('/login', function(req, res) {
 	res.sendFile(__dirname + '/admin/login.html');
 });
 
+app.get('/login', function(req, res) {
+	res.sendFile(__dirname + '/admin/login.html');
+});
+app.get('/extra', function(req, res) {
+	res.sendFile(__dirname + '/admin/extraWork.html');
+});
 app.get('/', function(req, res) {
 	var account = req.cookies.__uek__;
 	var columns = ['authority'];
