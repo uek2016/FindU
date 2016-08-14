@@ -1,5 +1,9 @@
 $(function() {
-
+	
+	
+	
+	
+	
 	var contacts = [];
 
 	//侧边栏
@@ -80,28 +84,19 @@ $(function() {
 
 	/////////////////////////////////////////////////////////
 	//保障没有网络也能使用
-	if(localStorage.__findu__data) {
-		contacts = JSON.parse(localStorage.__findu__data);
-		setTimeout(function() {
-			render(contacts);
-		}, 0);
-		setTimeout(function() {
+	if(localStorage.sgqphone){			
+		if(localStorage.__findu__data) {
+			contacts = JSON.parse(localStorage.__findu__data);
+			setTimeout(function() {
+				render(contacts);
+			}, 0);
+			setTimeout(function() {
+				sync();
+			}, 500);
+			
+		} else {
 			sync();
-		}, 500);
-		//校验用户是否   依然  存在
-		//		setTimeout(function() {
-		//			$.ajax({
-		//				url: "http://139.129.167.201:3000/",
-		//				dataType: "jsonp",
-		//				success: function(list) {
-		//					contacts = list;
-		//					render(contacts);
-		//					localStorage.__findu__data = JSON.stringify(contacts);
-		//				},
-		//			})
-		//		})
-	} else {
-		sync();
+		}
 	}
 
 	// fixed andorid>>>>>>>>>
