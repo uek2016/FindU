@@ -194,3 +194,19 @@ input {
   font-size: 16px;
   margin: 0 auto;
 }
+.zkf_jiaban{
+  position: fixed;
+  top:200px;
+  right: 20px;
+  width: 100px;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  font-size: 20px;
+  background: #01A5E2;
+  border-radius: 10%;
+}
+.zkf_jiaban a{
+  color: #fff;
+  text-decoration: none;
+}
