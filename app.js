@@ -16,6 +16,9 @@ app.get('/app/login', function(req, res) {
 app.get('/app/reset', function(req, res) {
 	res.sendFile(__dirname + '/front/m_reset.html');
 });
+app.get('/app/extra', function(req, res) {
+	res.sendFile(__dirname + '/front/lxr_extra_work.html');
+});
 app.get('/app/copyright', function(req, res) {
 	res.sendFile(__dirname + '/front/slide.html');
 });
