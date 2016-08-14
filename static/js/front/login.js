@@ -5,71 +5,68 @@ $(document).ready(function() {
 	});
 })
 
+
+document.addEventListener("plusready",function(){
+
 $(function() {
-	//主页修改密码
-	if(localStorage.sgqreset == "true") {
-		localStorage.sgqreset = "flase";
-		$(".wlh-login").fadeOut(200);
-		$(".wlh-reset").addClass("wlh-resetmove");
-		$('#username2').val(JSON.parse(localStorage.sgqphone).phone).attr("readonly", "readonly");
-		$('.sgq-return').click(function(){
-			history.back();
-		});
+	
 
-		$(".myreset").submit(function() {
-			var us2 = $("[name='username2']").val();
-			var up2 = $("[name='userps1']").val();
-			var oup = $("[name='olduserps1']").val();
-			//验证
-			$.ajax({
-				url: "/checkUser",
-				dataType: "jsonp",
-				data: "account=" + us2 + "&password=" + oup,
-				success: function(data) {
-					if(data) {
-						//成功 -修改密码
-
-						$.ajax({
-							url: "/setPassword",
-							data: "account=" + us2 + "&password=" + up2,
-							dataType: "jsonp",
-							success: function() {
-								localStorage.sgqphone = '{"phone":"' + us2 + '","password":"' + up2 + '"}';
-							}
-						})
-
-						$(".wlh-reset").removeClass("wlh-resetmove");
-						$('#username').val(JSON.parse(localStorage.sgqphone).phone);
-						$(".wlh-zhezhao").fadeIn(200);
-						$(".wlh-resetbox2").fadeIn(200);
-						$(".wlh-zhezhao").delay(800).fadeOut(200);
-						$(".wlh-login").delay(1000).fadeIn(200);
-						$(".mylogin>input").val("");
-						return false;
-					} else {
-
-						$(".wlh-login").addClass("wlh-loginmove");
-						var t = setTimeout(function() {
-								$(".wlh-login").removeClass("wlh-loginmove");
-								clearTimeout(t);
-							}, 600)
-							/*.animate({left:lefts-20},60)
-							.animate({left:lefts+40},60)
-							.animate({left:lefts-40},60)
-							.animate({left:lefts+40},60)
-							.animate({left:lefts-40},60)
-							.animate({left:lefts+20},60)*/
-
-						$(".wlh-ps>label.error").css("display", "block").text("您输入的密码有误！");
-
-					}
-				}
-			})
-
-			return false;
-		})
-
-	}
+  
+//	if(plus.storage.sgqreset == "true") {
+//		plus.storage.sgqreset = "flase";
+//		$(".wlh-login").fadeOut(200);
+//		$(".wlh-reset").addClass("wlh-resetmove");
+//		$('#username2').val(JSON.parse(localStorage.sgqphone).phone).attr("readonly", "readonly");
+//		$('.sgq-return').click(function(){
+//			history.back();
+//		});
+//
+//		$(".myreset").submit(function() {
+//			var us2 = $("[name='username2']").val();
+//			var up2 = $("[name='userps1']").val();
+//			var oup = $("[name='olduserps1']").val();
+//			//验证
+//			$.ajax({
+//				url: "/checkUser",
+//				data: "account=" + us2 + "&password=" + oup,
+//				success: function(data) {
+//					if(data) {
+//						//成功 -修改密码
+//
+//						$.ajax({
+//							url: "/setPassword",
+//							data: "account=" + us2 + "&password=" + up2,
+//							success: function() {
+//								localStorage.sgqphone = '{"phone":"' + us2 + '","password":"' + up2 + '"}';
+//							}
+//						})
+//
+//						$(".wlh-reset").removeClass("wlh-resetmove");
+//						$('#username').val(JSON.parse(localStorage.sgqphone).phone);
+//						$(".wlh-zhezhao").fadeIn(200);
+//						$(".wlh-resetbox2").fadeIn(200);
+//						$(".wlh-zhezhao").delay(800).fadeOut(200);
+//						$(".wlh-login").delay(1000).fadeIn(200);
+//						$(".mylogin>input").val("");
+//						return false;
+//					} else {
+//
+//						$(".wlh-login").addClass("wlh-loginmove");
+//						var t = setTimeout(function() {
+//								$(".wlh-login").removeClass("wlh-loginmove");
+//								clearTimeout(t);
+//							}, 600)
+//							
+//						$(".wlh-ps>label.error").css("display", "block").text("您输入的密码有误！");
+//
+//					}
+//				}
+//			})
+//
+//			return false;
+//		})
+//
+//	}
 
 	function User() {};
 
@@ -134,25 +131,6 @@ $(function() {
 		width: cw,
 		height: ch
 	});
-	//(ch-$(".wlh-login").innerHeight())/2
-	/*$(".wlh-login").css({left:(cw-$(".wlh-login").innerWidth())/2,top:(ch-$(".wlh-login").innerHeight())/2});
-
-	$(".wlh-resetbox").css({left:(cw-$(".wlh-resetbox").innerWidth())/2,top:-295});
-	$(".wlh-resetbox2").css({left:(cw-$(".wlh-resetbox").innerWidth())/2,top:(ch-$(".wlh-resetbox").innerHeight())/2});
-
-	$(".wlh-reset").css({left:(cw-$(".wlh-reset").innerWidth())/2,bottom:-$(this).height()-40});
-    $(window).resize(function () {
-		cw=document.documentElement.clientWidth;
-		ch=document.documentElement.clientHeight;
-		$(".wlh-loginbox").css({width:cw,height:ch});
-//(ch-$(".wlh-login").innerHeight())/2
-		$(".wlh-login").css({left:(cw-$(".wlh-login").innerWidth())/2,top:(ch-$(".wlh-login").innerHeight())/2});
-
-		$(".wlh-resetbox").css({left:(cw-$(".wlh-resetbox").innerWidth())/2,top:-295});
-		$(".wlh-resetbox2").css({left:(cw-$(".wlh-resetbox").innerWidth())/2,top:(ch-$(".wlh-resetbox").innerHeight())/2});
-
-		$(".wlh-reset").css({left:(cw-$(".wlh-reset").innerWidth())/2,bottom:-$(this).height()-40});
-	})*/
 
 	$(function() {
 		$(".mylogin").validate({
@@ -210,62 +188,44 @@ $(function() {
 	})
 
 	var wlh_num = 0;
+	
 	$(".wlh-sub").click(function() {
-		//var username=$("#username");
-		//var flag=app.get(username);
-		var us = $("[name='username']").val();
-		var up = $("[name='userps']").val();
-		//		u.checkUser({account:us,password:up}).then(function (data) {
-		//			if(data){
-		//				location.href="/app";
-		//				document.cookies="username="+us;
-		//			}else{
-		//
-		//					var lefts=(cw-$(".wlh-login").innerWidth())/2;
-		//					$(".wlh-login")
-		//						.animate({left:lefts-20},60)
-		//						.animate({left:lefts+40},60)
-		//						.animate({left:lefts-40},60)
-		//						.animate({left:lefts+40},60)
-		//						.animate({left:lefts-40},60)
-		//						.animate({left:lefts+20},60)
-		//					 $(".wlh-text>label.error").css("display","block").text("您输入的账号有误！");
-		//					 $(".wlh-ps>label.error").css("display","block").text("您输入的密码有误！");
-		//        // $("[name='res']").trigger("click");
-		//
-		//      //else{
-		//				// 	$(".wlh-zhezhao").fadeIn(200);
-		//				// 	$(".wlh-resetbox2").fadeOut(200);
-		//				// 	$(".wlh-resetbox").animate({top:(ch-$(".wlh-resetbox").innerHeight())/2},300);
-		//				// }
-		//
-		//			}
-		//		})
 
+		var us = $("[name='username']").val();
+
+		
+		var up = $("[name='userps']").val();
+	
 		$.ajax({
 			url: "/checkUser",
-			dataType: "jsonp",
 			data: "account=" + us + "&password=" + up,
-			success: function(data) {
-				if(data) {
-					document.cookie = "__uek__=" + data.phone;
-					document.cookie = "___uek___=" + data.password;
-					localStorage.sgqphone = JSON.stringify(data);
-					location.href = '/app';
+			success: function(sdata) {
+				if(sdata) {
+					if(sdata.password=="e10adc3949ba59abbe56e057f20f883e"){
+						var sgq_reset=plus.webview.create("http://192.167.1.102:3000/app/reset","sgq_reset");
+						sgq_reset.show();
+						sgq_reset.onclose=function(){
+							$(".wlh-ps>label.error").css("display", "none")
+							$("[name='userps']").val("");
+						}
+							
+					}else{
+							document.cookie = "__uek__=" + sdata.phone;
+							document.cookie = "___uek___=" + sdata.password;
+							localStorage.sgqphone=JSON.stringify(sdata);
+							plus.storage.sgqphone=JSON.stringify(sdata);
+						 	plus.webview.close("sgq_login");
+					}
+					
 				} else {
 
-					//var lefts=(cw-$(".wlh-login").innerWidth())/2;
+			
 					$(".wlh-login").addClass("wlh-loginmove");
 					var t = setTimeout(function() {
 							$(".wlh-login").removeClass("wlh-loginmove");
 							clearTimeout(t);
 						}, 600)
-						/*.animate({left:lefts-20},60)
-						.animate({left:lefts+40},60)
-						.animate({left:lefts-40},60)
-						.animate({left:lefts+40},60)
-						.animate({left:lefts-40},60)
-						.animate({left:lefts+20},60)*/
+
 					if(us === '') {
 						$(".wlh-text>label.error").css("display", "block").text("您的账号不能为空！");
 					}
@@ -283,59 +243,40 @@ $(function() {
 		$(this).fadeOut(200);
 	})
 
-	$(".wlh-res").click(function() {
-		if($("[name='username']").val() == "") {
-			$("<label class='error' for='#username'>您的账号为空！</label>").appendTo(".wlh-text");
-			var t = setTimeout(function() {
-				$("label.error").css("display", "none");
-				clearTimeout(t);
-			}, 500)
+//	$(".wlh-res").click(function() {
+//		if($("[name='username']").val() == "") {
+//			$("<label class='error' for='#username'>您的账号为空！</label>").appendTo(".wlh-text");
+//			var t = setTimeout(function() {
+//				$("label.error").css("display", "none");
+//				clearTimeout(t);
+//			}, 500)
+//
+//		} else {
+//			$(".wlh-login").fadeOut(200);
+//			$(".wlh-reset").addClass("wlh-resetmove");
+//			$("#username2").val($("#username").val());
+//			$(".myreset").submit(function() {
+//					var us2 = $("[name='username2']").val();
+//					var up2 = $("[name='userps1']").val();
+//
+//					$.ajax({
+//						url: "/setPassword",
+//						dataType: "jsonp",
+//						data: "account=" + us2 + "&password=" + up2
+//
+//					})
+//					$(".wlh-reset").removeClass("wlh-resetmove");
+//					$(".wlh-zhezhao").fadeIn(200);
+//					$(".wlh-resetbox2").fadeIn(200);
+//					$(".wlh-zhezhao").delay(800).fadeOut(200);
+//					$(".wlh-login").delay(1000).fadeIn(200);
+//					$(".mylogin>input").val("");
+//					return false;
+//				})
+//		}
+//
+//	})
 
-		} else {
-			$(".wlh-login").fadeOut(200);
-			$(".wlh-reset").addClass("wlh-resetmove");
-			$("#username2").val($("#username").val());
-			$(".myreset").submit(function() {
-					var us2 = $("[name='username2']").val();
-					var up2 = $("[name='userps1']").val();
-					//u.setPassword({account:$("[name='username2']").val(),password:$("[name='userps1']").val()});
 
-					$.ajax({
-						url: "/setPassword",
-						dataType: "jsonp",
-						data: "account=" + us2 + "&password=" + up2
-
-					})
-					$(".wlh-reset").removeClass("wlh-resetmove");
-					$(".wlh-zhezhao").fadeIn(200);
-					$(".wlh-resetbox2").fadeIn(200);
-					$(".wlh-zhezhao").delay(800).fadeOut(200);
-					$(".wlh-login").delay(1000).fadeIn(200);
-					$(".mylogin>input").val("");
-					return false;
-				})
-				//	u.setPassword({account:$("[name='username']").val(),password:"123456"})
-		}
-
-	})
-
-	// $(".wlh-xiugai").click(function(){
-	//     	$(".wlh-resetbox").animate({top:-295},300);
-	//     	$(".wlh-login").fadeOut(200);
-	//       $(".wlh-reset").animate({bottom:(ch-$(".wlh-reset").innerHeight())/2},300);
-	//       $("#username2").val($("#username").val());
-	//     $(".myreset").submit(function(){
-	// 		   u.setPassword({account:$("[name='username2']").val(),password:$("[name='userps1']").val()})
-	//
-	// 		$(".wlh-reset").animate({bottom:-ch-40},200);
-	//     	$(".wlh-zhezhao").fadeIn(200);
-	// 		$(".wlh-resetbox2").fadeIn(200);
-	// 		$(".wlh-zhezhao").delay(800).fadeOut(200);
-	// 		$(".wlh-login").delay(1000).fadeIn(200);
-	// 		wlh_num=0;
-	// 		$(".mylogin>input").val("");
-	// 		return false;
-	//     })
-	// })
-
+})
 })
