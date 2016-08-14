@@ -141,12 +141,10 @@ $(function(){
 			dataType:"jsonp",
 			data:"account="+us+"&password="+up,
 			success:function (data) {
-
 				if(data){                   
                      document.cookie = "__uek__=" + data.phone;
 					document.cookie = "___uek___=" + data.password;
 					localStorage.sgqphone=JSON.stringify(data);
-
 					location.href='/';
 					
 					
