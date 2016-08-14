@@ -203,7 +203,7 @@ $(function(){
         //lx_phoneItem
         var lx_phoneItem=$("<li>").addClass("lx_phoneItem").attr("id",option.uid);
         // 头像
-        var img=$("<img src='pc/imgs/lx_photo.png'>");
+        var img=$("<img src='/imgs/admin/lx_photo.png'>");
 
         lx_phoneItem.append(img);
         // lx_phoneItem.append(lx_info);
