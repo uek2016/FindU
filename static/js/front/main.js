@@ -167,21 +167,28 @@ $(function() {
 			localStorage.sgqreset = 'true';
 		})
 
-})
-//////////////////测试API代码
+	})
+	//////////////////测试API代码
 
 $(function() {
+	//	 console.log( moment().format('YYYY MM DD HH MM SS') );
+	//   添加测试数据的脚本
 	API.addExWork().then(function(wid) {
-		var date = new Date().getTime();
+		var base = moment({
+			y: 2016,
+			M: 6,
+			d: 1
+		})
+		var randomdate = base.clone().add(Math.ceil(Math.random() * 30), 'day').valueOf();
 		API.updateExWorkByUid({
 			wid: wid,
 			uid: Math.floor(Math.random() * 4) + 140,
 			w_title: '加班做银泰',
 			w_keywords: '银泰',
 			w_progress: Math.floor(Math.random() * 100),
-			w_start_time: date,
-			w_end_time: date,
-			w_date: date,
+			w_start_time: randomdate,
+			w_end_time: randomdate,
+			w_date: randomdate,
 		}).then(function(data) {
 			console.log(data);
 		})

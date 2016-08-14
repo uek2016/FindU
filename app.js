@@ -4,6 +4,7 @@ var mysql = require('mysql');
 var crypto = require('crypto');
 var cookieParser = require('cookie-parser');
 var _ = require('underscore');
+var moment = require('moment');
 
 var app = express();
 app.use(express.static(__dirname + '/static/'));
@@ -265,11 +266,10 @@ app.get('/api/exwork/excel', function(req, res) {
 			var conf = {};
 			conf.stylesXmlFile = __dirname + '/styles.xml';
 			conf.cols = [{
-				caption: '日期,姓名',
+				caption: '日期/姓名',
 				type: 'string',
 			}];
 			conf.rows = [];
-
 			//表格中的行  即所有人的姓名
 			var names = _.uniq(rows.map(function(v) {
 				return v.uname;
@@ -281,17 +281,36 @@ app.get('/api/exwork/excel', function(req, res) {
 				});
 			});
 
-			//表格中的列  即这个月从1日到31日;
-			var dates = _.range(30).map(function(v) {
-				return '2016年7月' + (v + 1) + '日';
+			//表格中的列  即这个月从1日到最后一天
+			var date = moment('2016-7-1', 'YYYY-MM-DD');
+			var dates = _.range(date.daysInMonth()).map(function(v) {
+				var day = date.clone().add(v, 'day');
+				return {
+					display: day.format('YY/MM/DD'),
+					value: day.valueOf()
+				};
 			})
-			dates.forEach(function(v) {
-				var row = [v];
-				names.forEach(function(v) {
-					row.push(v)
-				});
-				conf.rows.push(row);
-			})
+
+			//每一列中的信息
+			dates.forEach(function(date) {
+					//第一个为当前日期
+					var row = [date.display];
+					//随后为该人在该天的加班记录
+					names.forEach(function(name) {
+
+						var record = _.filter(rows, function(_) {
+							return _.w_date === date.value && _.uname === name;
+						})
+						if(record.length) {
+							//todo  补上开始时间和结束时间
+							row.push(record[0].w_title);
+						} else {
+							row.push('');
+						}
+					});
+					conf.rows.push(row);
+				})
+				//////////////////////////////////////
 			var result = nodeExcel.execute(conf);
 			res.setHeader('Content-Type', 'application/vnd.openxmlformats');
 			res.setHeader("Content-Disposition", "attachment; filename=" + "Report.xlsx");
