@@ -97,7 +97,7 @@ API.addExWork(wlh_wid).then(function(data){
 
 $("#queding").addEventListener("tap",function(){
 	API.updateExWorkByUid({wid:wlh_wid,"w_title":$(".wlhtitle").val(),"w_keywords":$(".wlhcon").val(),"w_progress":$(".wlhpre").val(),"w_start_time":$("#wlh_s").val(),"w_end_time":$("#wlh_e").val()}).ten(function(data){
-		localtion.href="/jiaban/wid:"+data[wid];
+		localtion.href="/app/extra/wid:"+data[wid];
 	})
 	
 })
