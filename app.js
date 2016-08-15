@@ -27,7 +27,9 @@ app.get('/app/extra', function(req, res) {
 app.get('/app/copyright', function(req, res) {
 	res.sendFile(__dirname + '/front/slide.html');
 });
-
+app.get('/app/jiabanshow', function(req, res) {
+	res.sendFile(__dirname + '/front/jiaban_show.html');
+});
 app.get('/app/', function(req, res) {
 	// if(req.cookies.__uek__){
 	res.sendFile(__dirname + '/front/m_index.html');
