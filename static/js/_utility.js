@@ -82,4 +82,9 @@ var API = {
 			return data;	
 		})
 	},
+	getExByMonth:function(month){
+		return $.get('/api/exwork/getMonthWork',{m:month}).done(function(data){
+			return data;	
+		})
+	},
 }

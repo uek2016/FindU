@@ -253,15 +253,20 @@ app.get('/api/exwork/getworkbywid',function(req,res){
 })
 ////////获取所有的加班条目  后台使用
 
-app.get('/api/exwork/getAllWork', function(req, res) {
+app.get('/api/exwork/getMonthWork', function(req, res) {
+	
+	var datestring = moment().year() + '-' + req.query.m + '-' + '1';
+	var date = moment(datestring,'YYYY-MM-DD');
+	var start = date.valueOf();
+	var end = date.clone().add(date.daysInMonth()-1,'day').valueOf();
+	
 	var columns = ['wid', 'user.uid', 'uname', 'w_title', 'w_keywords', 'w_progress', 'w_start_time', 'w_end_time', 'w_date', 'uek_extra_work.is_del'];
-	connection.query('SELECT ?? FROM uek_extra_work LEFT JOIN user ON uek_extra_work.uid = user.uid', [columns],
+	connection.query('SELECT ?? FROM uek_extra_work LEFT JOIN user ON uek_extra_work.uid = user.uid WHERE w_date BETWEEN ? AND ?', [columns,start,end],
 		function(err, rows) {
 			if(err) throw err;
 			res.json(rows);
 		})
 });
-
 /////////把所有的work条目导出为excel表格
 
 var nodeExcel = require('excel-export');
@@ -272,7 +277,7 @@ app.get('/api/exwork/excel', function(req, res) {
 	var date = moment(datestring,'YYYY-MM-DD');
 	var start = date.valueOf();
 	var end = date.clone().add(date.daysInMonth()-1,'day').valueOf();
-
+	
 	var columns = ['wid', 'user.uid', 'uname', 'w_title', 'w_keywords', 'w_progress', 'w_start_time', 'w_end_time', 'w_date', 'uek_extra_work.is_del'];
 	connection.query('SELECT ?? FROM uek_extra_work LEFT JOIN user ON uek_extra_work.uid = user.uid WHERE w_date BETWEEN ? AND ?', 
 	[columns,start,end],
