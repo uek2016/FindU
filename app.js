@@ -40,7 +40,7 @@ app.get('/login', function(req, res) {
 	res.sendFile(__dirname + '/admin/login.html');
 });
 app.get('/extra', function(req, res) {
-	res.sendFile(__dirname + '/admin/extraWork.html');
+	res.sendFile(__dirname + '/admin/extra_work.html');
 });
 app.get('/', function(req, res) {
 	var account = req.cookies.__uek__;
@@ -217,6 +217,7 @@ app.get('/api/exwork/getAllworkByUid', function(req, res) {
 		res.json(rows);
 	});
 })
+
 
 //// 根据wid更新加班条目
 app.get('/api/exwork/updateWorkByUid', function(req, res) {
