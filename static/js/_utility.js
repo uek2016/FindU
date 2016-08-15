@@ -76,5 +76,10 @@ var API = {
 		return $.get('/api/exwork/getAllworkByUid', {uid,uid}).done(function(data) {
 			return data;
 		}, 'json');
-	}
+	},
+	getWorkByWid:function(wid){
+		return $.get('/api/exwork/getworkbywid',{wid:wid}).done(function(data){
+			return data;	
+		})
+	},
 }
