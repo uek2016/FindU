@@ -213,8 +213,9 @@ $(function() {
 						}
 							
 					}else{
-							document.cookie = "__uek__=" + sdata.phone;
-							document.cookie = "___uek___=" + sdata.password;
+						
+							Cookies.set('__uek__', data.phone, { expires: 100 });
+							Cookies.set('___uek___', data.password, { expires: 100 });
 							localStorage.sgqphone=JSON.stringify(sdata);
 							plus.storage.sgqphone=JSON.stringify(sdata);
 						 	plus.webview.close("sgq_login");
