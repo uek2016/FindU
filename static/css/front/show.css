@@ -29,12 +29,25 @@ input[type='text']{
 .wlh_time{
 	margin-top:0;
 	border-bottom:1px solid rgba(0,0,0,0.2);
+	padding-left:0;
 }
 .wlh_time label{
 	padding-left:0;
 }
 .mui-btn-block{
-	position:fixed;
+	/*position:fixed;
 	bottom:0;
-	left:0
+	left:0 */
+}
+.field-contain input,.field-contain label{
+	float:left;
+}
+#field-range-input{
+	width:12%;float:left;
+}
+#field-range{
+	width:45%;
+}
+.mui-btn-block{
+	margin-top:34px;
 }
