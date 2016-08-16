@@ -187,7 +187,7 @@ $(function() {
 			w_keywords: '银泰',
 			w_progress: Math.floor(Math.random() * 100),
 			w_start_time: randomdate,
-			w_end_time: randomdate,
+			w_end_time: randomdate+ Math.floor(Math.random()*3600000*5),
 			w_date: randomdate,
 		}).then(function(data) {
 			console.log(data);
