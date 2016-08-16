@@ -6,11 +6,13 @@ var cookieParser = require('cookie-parser');
 var _ = require('underscore');
 var moment = require('moment');
 
-var bodyParser = require('body-parser')
-app.use( bodyParser.json() );  
-app.use(bodyParser.urlencoded({ extended: true })); 
+
 
 var app = express();
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());  
+app.use(bodyParser.urlencoded({ extended: true })); 
+
 app.use(express.static(__dirname + '/static/'));
 app.use(cookieParser());
 
