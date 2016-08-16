@@ -38,12 +38,12 @@ input {
   width: 1000px;
   height: 100%;
   margin: 0 auto;
-  background: url("../imgs/lx_logo.png") no-repeat left top;
+  background: url("/imgs/admin/lx_logo.png") no-repeat left top;
 }
 .lx_top .lx_topCon #lx_search {
   width: 330px;
   height: 76px;
-  background: url("../imgs/lx_search.png") no-repeat left top;
+  background: url("/imgs/admin/lx_search.png") no-repeat left top;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -78,7 +78,7 @@ input {
   height: auto;
   padding: 50px 0;
   background-color: #ffffff;
-  background-image: url("../imgs/lx_bg.png"), url("../imgs/lx_bgT.png"), url("../imgs/lx_bgB.png");
+  background-image: url("/imgs/admin/lx_bg.png"), url("/imgs/admin/lx_bgT.png"), url("/imgs/admin/lx_bgB.png");
   background-position: center center, -40px top, right bottom;
   background-repeat: no-repeat;
 }
@@ -175,10 +175,10 @@ input {
   margin-right: 5px;
 }
 .lx_phone .lx_phoneItem .lx_btn a:first-of-type {
-  background: url("../imgs/lx_del.png") no-repeat center;
+  background: url("/imgs/admin/lx_del.png") no-repeat center;
 }
 .lx_phone .lx_phoneItem .lx_btn a:nth-of-type(2) {
-  background: url("../imgs/lx_change.png") no-repeat center;
+  background: url("/imgs/admin/lx_change.png") no-repeat center;
 }
 .lx_footer {
   width: 100%;
