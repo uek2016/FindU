@@ -1,4 +1,5 @@
 $(function(){
+	
 	var time={};
 	(function($) {
 		$.init();
