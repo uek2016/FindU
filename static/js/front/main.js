@@ -1,5 +1,5 @@
-$(function() {
-//document.addEventListener("plusready",function(){
+//$(function() {
+document.addEventListener("plusready",function(){
 //	 $.ajaxSetup ({
 //       cache: false //关闭AJAX缓存
 //   });
