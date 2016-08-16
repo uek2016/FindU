@@ -1,12 +1,12 @@
-//$(function() {
-document.addEventListener("plusready",function(){
+$(function() {
+// document.addEventListener("plusready",function(){
 //	 $.ajaxSetup ({
 //       cache: false //关闭AJAX缓存
 //   });
-	
+
 		if(localStorage.sgqphone) {
 				var render = function(contacts) {
-					
+
 				var data = {};
 				contacts.forEach(function(v) {
 					var key = v.sindex.toUpperCase();
@@ -16,12 +16,12 @@ document.addEventListener("plusready",function(){
 					data[key].push(v);
 				})
 				var indexlists = Object.keys(data).sort();
-	
+
 				var userlistHtml = '';
 				var sideElHtml = '';
 				indexlists.forEach(function(v) {
 					sideElHtml += '<li>' + v.toUpperCase() + '</li>';
-	
+
 					var arr = data[v].sort(function(a, b) {
 						return a.uname > b.uname;
 					});
@@ -30,7 +30,7 @@ document.addEventListener("plusready",function(){
 						userlistHtml += '<dd>' + v.uname + '<a href="tel:' + v.phone + '"></a></dd>';
 					})
 				})
-	
+
 				//创建侧边栏 和 用户列表
 				sideEl.html(sideElHtml);
 				sideEl.height(function() {
@@ -40,10 +40,10 @@ document.addEventListener("plusready",function(){
 					top: ($(window).outerHeight(true) - sideEl.height()) / 2
 				})
 				userlistEl.html(userlistHtml)
-	
+
 				//去掉每组最后一个成员的分割线
 				userlistEl.find('dt').prev().css('border', 'none');
-	
+
 				if(indexlists.length !== 0) {
 					toplist = userlistEl.find('dt').map(function(i, v) {
 						return {
@@ -57,39 +57,38 @@ document.addEventListener("plusready",function(){
 				} else {
 					$('.fixedindex').text('');
 				}
-	
+
 				off = $('.header').height() + $('.sub-header').height() + $('.fixedindex').height();
-	
+
 			}
-			
+
 			if (navigator.onLine) {
-				alert(1)
 				var contacts = [];
 
 				//侧边栏
 				var sideEl = $('.indexlist');
-		
+
 				//用户列表
 				var userlistEl = $('.userlist');
-		
+
 				//纪录每一组成员的offsettop
 				var toplist = [];
-		
+
 				//页面滚动条的偏移量
 				var off;
-			
-		
+
+
 				var sync = function() {
-					
+
 					API.getAllUser().then(function(list) {
 						contacts = list;
 						render(contacts);
 						localStorage.__findu__data = JSON.stringify(contacts);
 					})
 				}
-		
+
 //				var render = function(contacts) {
-//				
+//
 //					var data = {};
 //					contacts.forEach(function(v) {
 //						var key = v.sindex.toUpperCase();
@@ -99,12 +98,12 @@ document.addEventListener("plusready",function(){
 //						data[key].push(v);
 //					})
 //					var indexlists = Object.keys(data).sort();
-//		
+//
 //					var userlistHtml = '';
 //					var sideElHtml = '';
 //					indexlists.forEach(function(v) {
 //						sideElHtml += '<li>' + v.toUpperCase() + '</li>';
-//		
+//
 //						var arr = data[v].sort(function(a, b) {
 //							return a.uname > b.uname;
 //						});
@@ -113,7 +112,7 @@ document.addEventListener("plusready",function(){
 //							userlistHtml += '<dd>' + v.uname + '<a href="tel:' + v.phone + '"></a></dd>';
 //						})
 //					})
-//		
+//
 //					//创建侧边栏 和 用户列表
 //					sideEl.html(sideElHtml);
 //					sideEl.height(function() {
@@ -123,10 +122,10 @@ document.addEventListener("plusready",function(){
 //						top: ($(window).outerHeight(true) - sideEl.height()) / 2
 //					})
 //					userlistEl.html(userlistHtml)
-//		
+//
 //					//去掉每组最后一个成员的分割线
 //					userlistEl.find('dt').prev().css('border', 'none');
-//		
+//
 //					if(indexlists.length !== 0) {
 //						toplist = userlistEl.find('dt').map(function(i, v) {
 //							return {
@@ -140,11 +139,11 @@ document.addEventListener("plusready",function(){
 //					} else {
 //						$('.fixedindex').text('');
 //					}
-//		
+//
 //					off = $('.header').height() + $('.sub-header').height() + $('.fixedindex').height();
-//		
+//
 //				}
-		
+
 				/////////////////////////////////////////////////////////
 				//保障没有网络也能使用
 				if(localStorage.__findu__data) {
@@ -170,14 +169,14 @@ document.addEventListener("plusready",function(){
 				} else {
 					sync();
 				}
-		
+
 				$(window).on('resize', function() {
 					search($('#search').val().trim());
 				})
-		
+
 				////////////////////////////////////////////////////////////////////
 				//头部固定字母条
-		
+
 				$(window).on('scroll', function() {
 					var s = $(this).scrollTop() + off;
 					if(toplist) {
@@ -189,7 +188,7 @@ document.addEventListener("plusready",function(){
 						})
 					}
 				});
-		
+
 				/////////////////////////////////////////////////////////////////////
 				//右侧点击和拖动
 				$('.indexlist').on('touchstart touchmove', function(e) {
@@ -204,7 +203,7 @@ document.addEventListener("plusready",function(){
 					$(window).scrollTop(toplist[x].top - soff);
 					return false;
 				});
-		
+
 				/////////////////////////////////////////////////////////////////
 				//搜索功能
 				var search = function(key) {
@@ -217,20 +216,20 @@ document.addEventListener("plusready",function(){
 					})
 					render(tmp);
 				}
-		
+
 				// fixed ios position:fixed;
 				$('#search').on('touchstart', function() {
 					$(window).scrollTop(0);
 				})
-		
+
 				$('#search').on('input', function(e) {
 					search($(this).val().trim())
 					if($(this).val().trim() === '') {
 						$(this).trigger('blur');
 					}
 				})
-				
-			   
+
+
 			} else {
 			   /////////////////////////////////////////////////////////
 				//保障没有网络也能使用
@@ -239,7 +238,7 @@ document.addEventListener("plusready",function(){
 					setTimeout(function() {
 						render(contacts);
 					}, 0);
-					
+
 					//校验用户是否   依然  存在
 					//		setTimeout(function() {
 					//			$.ajax({
@@ -252,14 +251,14 @@ document.addEventListener("plusready",function(){
 					//				},
 					//			})
 					//		})
-				} 
+				}
 			}
 
-			
 
-			
+
+
 		} else {
-		
+
 			if(plus.networkinfo.getCurrentType()==0||plus.networkinfo.getCurrentType()==1){
 				plus.nativeUI.toast( "请连接网络！");
 			}else{
@@ -267,26 +266,26 @@ document.addEventListener("plusready",function(){
 				var sgq_login=plus.webview.create("./login","sgq_login");
 				sgq_login.show();
 				plus.webview.close(current);
-					
+
 //					sgq_login.onclose=function(){
 //
 ////						if(plus.storage.sgqphone){
 ////							var sgq_index=plus.webview.create("http://192.168.2.122:3000/app/","sgq_index");
 ////							sgq_index.show();
-////						}	
+////						}
 //						var sgq_index=plus.webview.create("http://192.168.2.122:3000/app/","sgq_index");
 //							sgq_index.show();
 //					}
-								
-				
+
+
 			}
-		
-						
-		
-						
+
+
+
+
 		}
-		
-		
+
+
 
 
 
@@ -325,4 +324,3 @@ $(function() {
 	//		console.log(data);
 	//	})
 })
-

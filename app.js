@@ -35,13 +35,14 @@ app.get('/app/copyright', function(req, res) {
 app.get('/app/jiabanshow', function(req, res) {
 	res.sendFile(__dirname + '/front/jiaban_show.html');
 });
-app.get('/app/', function(req, res) {
+app.get('/app', function(req, res) {
 	// if(req.cookies.__uek__){
 	res.sendFile(__dirname + '/front/m_index.html');
 	// }else{
 	// res.redirect('/app/login');
 	// }
 });
+
 
 app.get('/login', function(req, res) {
 	res.sendFile(__dirname + '/admin/login.html');
