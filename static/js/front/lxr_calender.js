@@ -1,32 +1,32 @@
 $(function(){
 	var meiyuetianshu = [31,28,31,30,31,30,31,31,30,31,30,31];
 	var currentdate = new Date();
-	var date = new Date();
-	var cells = document.getElementsByClassName('cell');
+  	var date = new Date();
+  	var cells = document.getElementsByClassName('cell');
 
-	var $$ = function(id){
+  	var $$ = function(id){
 	    return document.getElementById(id);
-  };
+	};
 
-  var isToday = function(){
-    var now = new Date();
-    if(date.getFullYear() == now.getFullYear()
-       &&date.getMonth() == now.getMonth()
-       &&date.getDate() == now.getDate()){
-      return true;
-    }
-    return false;
-  };
+	var isToday = function(){
+	    var now = new Date();
+	    if(date.getFullYear() == now.getFullYear()
+	       &&date.getMonth() == now.getMonth()
+	       &&date.getDate() == now.getDate()){
+	      return true;
+	    }
+	    return false;
+	};
 	
 	var addClass = function(el,c){
-    var t = el.className.split(' ');
-    var dict = {};   
-    for(var i = 0; i<t.length; i++){
-      dict[t[i]] = true;
-    }
-    if( !dict[c] ){
-      el.className += ' ' + c;
-    }
+	    var t = el.className.split(' ');
+	    var dict = {};   
+	    for(var i = 0; i<t.length; i++){
+	      dict[t[i]] = true;
+	    }
+	    if( !dict[c] ){
+	      el.className += ' ' + c;
+	    }
 	};
 	var removeClass = function(el,c){
 	    var t = el.className.split(' ');
@@ -57,15 +57,15 @@ $(function(){
 	setmeiyuetianshu();
 	//前一月
 	var previousMonth = function(){
-    date.setMonth(date.getMonth()-1);
-  	var d = date.getDate();
-	  date.setDate(date.getDate()-d+1)
+	    date.setMonth(date.getMonth()-1);
+    	var d = date.getDate();
+		date.setDate(date.getDate()-d+1)
 	};
 	//后一月
 	var nextMonth = function(){
-    date.setMonth(date.getMonth()+1);
-    var d = date.getDate();
-	  date.setDate(date.getDate()-d+1)
+	    date.setMonth(date.getMonth()+1);
+	    var d = date.getDate();
+		date.setDate(date.getDate()-d+1)
 	};
 	
   var today;
@@ -132,7 +132,7 @@ $(function(){
       removeClass(cells[i].parentElement,'off-month');
     }
     
-    // console.log(date.getDay())
+    console.log(date.getDay())
     
     //画下月的天
     var left = 42 - i;
@@ -150,113 +150,74 @@ $(function(){
   //日历月份跳转
    	touch.on('#monthbody', 'touchstart', function(ev){
 
-	  });
+	});
 	
-  	var dx;
-  	var flag = 0;
-  	touch.on('#monthbody', 'drag', function(ev){
-  		dx = dx || 0;
-  		var offx = dx + ev.x;
-  		$("#monthbody")[0].style.transform = "translate3d(" + offx + "px,0,0)";
-  	});
-  	
-  	touch.on('#monthbody', 'dragend', function(ev){
-  		$("#monthbody")[0].style.transform = "translate3d(0,0,0)";
+	var dx;
+	var flag = 0;
+	touch.on('#monthbody', 'drag', function(ev){
+		dx = dx || 0;
+		var offx = dx + ev.x;
+		$("#monthbody")[0].style.transform = "translate3d(" + offx + "px,0,0)";
+	});
+	
+	touch.on('#monthbody', 'dragend', function(ev){
+		$("#monthbody")[0].style.transform = "translate3d(0,0,0)";
 
-  		dx += ev.x;
+		dx += ev.x;
 
-  		if(dx < -50){
-  			nextMonth();
-  			drawcalender();
-    		ondatechange();
-  		}else if(dx > 50){
-  			previousMonth();
-  			drawcalender();
+		if(dx < -50){
+			nextMonth();
+			drawcalender();
   			ondatechange();
-  		}
-  		dx = 0;
-
-      var lxr_month = date.getMonth()+1;
-
-      API.getExByMonth(lxr_month).then(function(data){
-        $(".lxr_extrawork_ul").html("")
-        lxr_exlist(data);
-      })
-  
-  	});
+		}else if(dx > 50){
+			previousMonth();
+			drawcalender();
+			ondatechange();
+		}
+		dx = 0;
+	});
    	
   
   //点击每天
    for ( var i = 0;  i < cells.length;  i++){
+
     cells[i].onclick = function(){
-		  var currentYear = date.getFullYear();
-    	var currentMonth = date.getMonth();
-    	var currentDate = date.getDate();
-
-    	var targetYear,targetMonth,targetDate;
-
-    	targetDate = Number(this.innerHTML);
-
-    	if(this.hasAttribute('prev')){
-      	targetMonth = currentMonth - 1;
-      	if(targetMonth == -1){
-        		targetYear = currentYear - 1;
-        		setmeiyuetianshu(targetYear);
+		var currentYear = date.getFullYear();
+      	var currentMonth = date.getMonth();
+      	var currentDate = date.getDate();
+      	var targetYear,targetMonth,targetDate;
+      	targetDate = Number(this.innerHTML);
+      	if(this.hasAttribute('prev')){
+        	targetMonth = currentMonth - 1;
+        	if(targetMonth == -1){
+          		targetYear = currentYear - 1;
+          		setmeiyuetianshu(targetYear);
+        	}
+        	targetYear = currentYear;
+      	}else if( this.hasAttribute('next') ){
+        	targetMonth = currentMonth + 1;
+        	if(targetMonth == 12){
+          		argetYear = currentYear + 1;
+          		setmeiyuetianshu(targetYear);
+        	}
+        	targetYear = currentYear;
+      	}else{
+        	targetYear = currentYear;
+        	targetMonth = currentMonth;
       	}
-      	targetYear = currentYear;
-    	}else if( this.hasAttribute('next') ){
-      	targetMonth = currentMonth + 1;
-      	if(targetMonth == 12){
-        		argetYear = currentYear + 1;
-        		setmeiyuetianshu(targetYear);
-      	}
-      	targetYear = currentYear;
-    	}else{
-      	targetYear = currentYear;
-      	targetMonth = currentMonth;
-    	}
-    	date = new Date(targetYear,targetMonth,targetDate);
-    	drawcalender();
-    	ondatechange();
-
-
-      // console.log(targetYear,targetMonth,targetDate)
-      
-      var lxrlistri = document.getElementsByClassName("lxr_list_ri");
-      var lxrlist = document.getElementsByClassName("lxr_extrawork_li");
-      
-      for(var i = 0;i < lxrlistri.length;i++){
-        if(lxrlistri[i].innerHTML != targetDate+"日"){
-//          console.log(lxrlistri[i].innerHTML)
-//          console.log(targetDate+"日")
-          addClass(lxrlist[i],"lxr_hidden");
-        }else{
-          removeClass(lxrlist[i],"lxr_hidden")
-        }
-      }
-
-
-      
+      	date = new Date(targetYear,targetMonth,targetDate);
+      	drawcalender();
+      	ondatechange();
     }
   }
    
   var lxr_gotoday = document.getElementsByClassName("lxr_gotoday")[0];
-
   lxr_gotoday.onclick = function(){
     date = new Date();
     drawcalender();
     ondatechange();
   };
-
-
-  
-  var lxr_month = date.getMonth()+1;
-
-  API.getExByMonth(lxr_month).then(function(data){
-    $(".lxr_extrawork_ul").html("")
-    lxr_exlist(data);
-  })
-
-
+   
+   
    
 })

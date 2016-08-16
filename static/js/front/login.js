@@ -6,67 +6,9 @@ $(document).ready(function() {
 })
 
 
-document.addEventListener("plusready",function(){
+// document.addEventListener("plusready",function(){
 
-//$(function() {
-	
-
-  
-//	if(plus.storage.sgqreset == "true") {
-//		plus.storage.sgqreset = "flase";
-//		$(".wlh-login").fadeOut(200);
-//		$(".wlh-reset").addClass("wlh-resetmove");
-//		$('#username2').val(JSON.parse(localStorage.sgqphone).phone).attr("readonly", "readonly");
-//		$('.sgq-return').click(function(){
-//			history.back();
-//		});
-//
-//		$(".myreset").submit(function() {
-//			var us2 = $("[name='username2']").val();
-//			var up2 = $("[name='userps1']").val();
-//			var oup = $("[name='olduserps1']").val();
-//			//验证
-//			$.ajax({
-//				url: "/checkUser",
-//				data: "account=" + us2 + "&password=" + oup,
-//				success: function(data) {
-//					if(data) {
-//						//成功 -修改密码
-//
-//						$.ajax({
-//							url: "/setPassword",
-//							data: "account=" + us2 + "&password=" + up2,
-//							success: function() {
-//								localStorage.sgqphone = '{"phone":"' + us2 + '","password":"' + up2 + '"}';
-//							}
-//						})
-//
-//						$(".wlh-reset").removeClass("wlh-resetmove");
-//						$('#username').val(JSON.parse(localStorage.sgqphone).phone);
-//						$(".wlh-zhezhao").fadeIn(200);
-//						$(".wlh-resetbox2").fadeIn(200);
-//						$(".wlh-zhezhao").delay(800).fadeOut(200);
-//						$(".wlh-login").delay(1000).fadeIn(200);
-//						$(".mylogin>input").val("");
-//						return false;
-//					} else {
-//
-//						$(".wlh-login").addClass("wlh-loginmove");
-//						var t = setTimeout(function() {
-//								$(".wlh-login").removeClass("wlh-loginmove");
-//								clearTimeout(t);
-//							}, 600)
-//							
-//						$(".wlh-ps>label.error").css("display", "block").text("您输入的密码有误！");
-//
-//					}
-//				}
-//			})
-//
-//			return false;
-//		})
-//
-//	}
+$(function() {
 
 	function User() {};
 
@@ -159,54 +101,56 @@ document.addEventListener("plusready",function(){
 	})
 	if(localStorage.sgqphone){
 		$("[name='username']").val(JSON.parse(localStorage.sgqphone).phone);
-			
+
 	}
 
 	var wlh_num = 0;
-	
+
 	$(".wlh-sub").click(function() {
-		
+
 		var us = $("[name='username']").val();
 		var up = $("[name='userps']").val();
-		
-	
+
+
 		$.ajax({
 			url: "/checkUser",
 			data: "account=" + us + "&password=" + up,
 			dataType:"jsonp",
-			success: function(sdata) {		
+			success: function(sdata) {
 				console.log(sdata)
 				if(sdata) {
 					if(sdata.password=="e10adc3949ba59abbe56e057f20f883e"){
 						localStorage.sgqphone=JSON.stringify(sdata);
-						var sgq_reset=plus.webview.create("./reset","sgq_reset");
+						// var sgq_reset=plus.webview.create("./reset","sgq_reset");
+            location.href="/app";
 						sgq_reset.show();
 						sgq_reset.onclose=function(){
 							$(".wlh-ps>label.error").css("display", "none");
 							$('#username').val(JSON.parse(localStorage.sgqphone).phone);
 							$("[name='userps']").val("");
 						}
-							
+
 					}else{
 
 //							document.cookie = "__uek__=" + sdata.phone;
 //							document.cookie = "___uek___=" + sdata.password;
-							
-						
-							
+
+
+
 							Cookies.set('__uek__', data.phone, { expires: 100 });
 							Cookies.set('___uek___', data.password, { expires: 100 });
-							//将uid存储到localStorage.sgqphone中，uid读取方法：JSON.parse(localStorage.sgqphone).uid	
+              location.href="/app";
+							//将uid存储到localStorage.sgqphone中，uid读取方法：JSON.parse(localStorage.sgqphone).uid
 							localStorage.sgqphone=JSON.stringify(sdata);
 							plus.webview.close("sgq_index");
 						 	var sgq_index=plus.webview.create("http://192.167.1.111:3000/app/","sgq_index");
 							plus.webview.show(sgq_index)
 							plus.webview.close("sgq_login");
 					}
-					
+
 				} else {
 
-			
+
 					$(".wlh-login").addClass("wlh-loginmove");
 					var t = setTimeout(function() {
 							$(".wlh-login").removeClass("wlh-loginmove");

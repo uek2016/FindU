@@ -1,9 +1,9 @@
-
-// $(function(){
+﻿$(function(){
 	
 	$(".lxr_extra_liebiao").click(function(){
 		$(".lxr_extra_workinfor").slideToggle()
 	})
+
 	
 	var lxr_intime = new Date();
 	// console.log(lxr_intime);
@@ -69,3 +69,6 @@
 	
 	
 // })
+
+})
+

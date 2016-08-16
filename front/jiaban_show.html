@@ -1,6 +1,5 @@
 <!doctype html>
 <html>
-
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
@@ -21,7 +20,7 @@
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 		    <h1 class="mui-title"></h1>
 		</header>
-		
+		           
 		<div class="mui-content">
 			<div class="mui-input-row">
 			    <input type="text" class="wlhtitle" name="ExWorktitle" placeholder="请输入加班标题">
@@ -33,66 +32,19 @@
 			    </div>
 			</div>
 			
-		    <div class="mui-input-row">
-			   
-			
-			
-			<div class="btn mui-input-row wlh_time" class='demo3' data-options='{"value":"2016-8-15 10:10","beginYear":2015,"endYear":2030}'>
-				<label>开始</label>
-		    	<input class='result' id="wlh_s" type="text" class="wlhstime" name="ExWorktitle" placeholder="请选择开始时间">
-		    	
-			</div>
-			<div style="border-bottom:0px;" class="btn mui-input-row wlh_time" class='demo3' data-options='{"value":"2016-8-15 10:10","beginYear":2015,"endYear":2030}'>
-		    	<label>结束</label>
-		    	<input class='result' id="wlh_e" type="text" class="wlhetime" name="ExWorktitle" placeholder="请选择结束时间">
-		    	
+		    <div class="mui-input-row">			
+				<div id='demo3' class="btn mui-input-row wlh_time" class='demo3' data-options='{"value":"2016-08-16 18:00","beginYear":2010,"endYear":2020}'>
+					<label>开始</label>
+			    	<input class='result' id="wlh_s" type="text" class="wlhstime" name="ExWorktitle" placeholder="请选择开始时间">		    	
+				</div>
+				<div id='demo4' style="border-bottom:0px;" class="btn mui-input-row wlh_time" class='demo3' data-options='{"value":"2016-08-16 20:00","beginYear":2010,"endYear":2020}'>
+			    	<label>结束</label>
+			    	<input class='result' id="wlh_e" type="text" class="wlhetime" name="ExWorktitle" placeholder="请选择结束时间">
+			    	
+			    </div>		    
 		    </div>
-		    
-		    </div>
+
 		    <button type="button" id="queding" class="mui-btn mui-btn-blue mui-btn-block">确定</button>
 		</div>
 	</body>
-
-	<script type="text/javascript">
-	/*(function($) {
-		$.init();
-		var rangeList = document.querySelectorAll('input[type="range"]');
-	    for(var i=0,len=rangeList.length;i<len;i++){
-	        rangeList[i].addEventListener('input',function(){
-	            if(this.id.indexOf('field')>=0){
-	                document.getElementById(this.id+'-input').value = this.value;
-                }else{
-                    document.getElementById(this.id+'-val').innerHTML = this.value;
-	            }	
-	        });
-	    }
-		document.getElementById('field-range-input').addEventListener('input',function(){
-	        document.getElementById('field-range').value = this.value;
-	    });
-	    
-	    var result = $('.result');
-		var btns = $('.btn');
-		btns.each(function(i, btn) {
-			btn.addEventListener('tap', function() {
-				var optionsJson = this.getAttribute('data-options') || '{}';
-				var options = JSON.parse(optionsJson);
-				var id = this.getAttribute('id');
-				var picker = new $.DtPicker(options);
-				picker.show(function(rs) {
-							/*
-							 * rs.value 拼合后的 value
-							 * rs.text 拼合后的 text
-							 * rs.y 年，可以通过 rs.y.vaue 和 rs.y.text 获取值和文本
-							 * rs.m 月，用法同年
-							 * rs.d 日，用法同年
-							 * rs.h 时，用法同年
-							 * rs.i 分（minutes 的第二个字母），用法同年
-							 *//*
-					result[i].value = rs.y.value +"年" + rs.m.text +"月" + rs.d.text +"日" +"  "+ rs.h.text +":" + rs.i.text;							
-					picker.dispose();
-				});
-			}, false);
-		});
-	})(mui);*/
-	</script>
 </html>

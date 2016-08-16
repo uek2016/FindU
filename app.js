@@ -5,11 +5,13 @@ var crypto = require('crypto');
 var cookieParser = require('cookie-parser');
 var _ = require('underscore');
 var moment = require('moment');
-var app = express();
 
-var bodyParser = require('body-parser')
-app.use( bodyParser.json() );  
-app.use(bodyParser.urlencoded({ extended: true })); 
+
+
+var app = express();
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname + '/static/'));
 app.use(cookieParser());
@@ -33,13 +35,14 @@ app.get('/app/copyright', function(req, res) {
 app.get('/app/jiabanshow', function(req, res) {
 	res.sendFile(__dirname + '/front/jiaban_show.html');
 });
-app.get('/app/', function(req, res) {
+app.get('/app', function(req, res) {
 	// if(req.cookies.__uek__){
 	res.sendFile(__dirname + '/front/m_index.html');
 	// }else{
 	// res.redirect('/app/login');
 	// }
 });
+
 
 app.get('/login', function(req, res) {
 	res.sendFile(__dirname + '/admin/login.html');
@@ -60,6 +63,18 @@ app.get('/', function(req, res) {
 	});
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
 ////////////////////API列表////////////////////////////////////
 
 app.listen(3000, function() {
@@ -70,7 +85,7 @@ var connection = mysql.createConnection({
 	host: 'localhost',
 	port: '3306',
 	user: 'root',
-	password: '',
+	password: 'root',
 	database: 'uek',
 	// socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock',
 });
@@ -81,7 +96,7 @@ app.get('/checkUser', function(req, res) {
 	hash.update(new Buffer(req.query.password, "binary"));
 	var encode = hash.digest('hex');
 
-	connection.query('SELECT phone, password, uid FROM user where phone = ?', [req.query.account], function(err, result) {
+	connection.query('SELECT ?? FROM user where phone = ?', ['password', req.query.account], function(err, result) {
 		if(result[0] && (result[0].password === encode)) {
 			res.jsonp({
 				phone: req.query.account,
@@ -227,7 +242,7 @@ app.get('/api/exwork/getAllworkByUid', function(req, res) {
 //// 根据wid更新加班条目
 app.get('/api/exwork/updateWorkByUid', function(req, res) {
 	var q = req.query;
-	connection.query('UPDATE uek_extra_work SET uid = ?, w_title = ?, w_keywords = ?, w_progress = ?, w_start_time = ?,  w_end_time = ?, w_date = ? WHERE wid = ? ', 
+	connection.query('UPDATE uek_extra_work SET uid = ?, w_title = ?, w_keywords = ?, w_progress = ?, w_start_time = ?,  w_end_time = ?, w_date = ? WHERE wid = ? ',
 	[q.uid, q.w_title, q.w_keywords, q.w_progress, q.w_start_time, q.w_end_time, q.w_date, q.wid], function(err, results) {
 		if(err) {
 			res.json(false);
@@ -247,7 +262,7 @@ app.get('/api/exwork/deleteWorkByWid', function(req, res) {
 		}
 	});
 })
-//// 根据wid获取一条加班记录 
+//// 根据wid获取一条加班记录
 app.get('/api/exwork/getworkbywid',function(req,res){
 	connection.query('select * from uek_extra_work where wid = ?',
 	[req.query.wid],
@@ -259,12 +274,12 @@ app.get('/api/exwork/getworkbywid',function(req,res){
 ////////获取所有的加班条目  后台使用
 
 app.get('/api/exwork/getMonthWork', function(req, res) {
-	
+
 	var datestring = moment().year() + '-' + req.query.m + '-' + '1';
 	var date = moment(datestring,'YYYY-MM-DD');
 	var start = date.valueOf();
 	var end = date.clone().add(date.daysInMonth()-1,'day').valueOf();
-	
+
 	var columns = ['wid', 'user.uid', 'uname', 'w_title', 'w_keywords', 'w_progress', 'w_start_time', 'w_end_time', 'w_date', 'uek_extra_work.is_del'];
 	connection.query('SELECT ?? FROM uek_extra_work LEFT JOIN user ON uek_extra_work.uid = user.uid WHERE w_date BETWEEN ? AND ?', [columns,start,end],
 		function(err, rows) {
@@ -282,9 +297,9 @@ app.get('/api/exwork/excel', function(req, res) {
 	var date = moment(datestring,'YYYY-MM-DD');
 	var start = date.valueOf();
 	var end = date.clone().add(date.daysInMonth()-1,'day').valueOf();
-	
+
 	var columns = ['wid', 'user.uid', 'uname', 'w_title', 'w_keywords', 'w_progress', 'w_start_time', 'w_end_time', 'w_date', 'uek_extra_work.is_del'];
-	connection.query('SELECT ?? FROM uek_extra_work LEFT JOIN user ON uek_extra_work.uid = user.uid WHERE w_date BETWEEN ? AND ?', 
+	connection.query('SELECT ?? FROM uek_extra_work LEFT JOIN user ON uek_extra_work.uid = user.uid WHERE w_date BETWEEN ? AND ?',
 	[columns,start,end],
 		function(err, rows) {
 			if(err) throw err;

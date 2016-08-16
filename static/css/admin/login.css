@@ -15,14 +15,14 @@ input{
 }
 .wlh-loginbox {
   overflow: hidden;
-  background: url("../imgs/wlh/wlh_login_bg.png") no-repeat;
+  background: url("/imgs/admin/wlh_login_bg.png") no-repeat;
   font-family: Arial, "微软雅黑";
   position: relative;
 }
 .wlh-loginbox .wlh-login {
   width: 303px;
   height: 422px;
-  background: #fff url("../imgs/wlh/wlh_login_line.png") no-repeat left top;
+  background: #fff url("/imgs/admin/wlh_login_line.png") no-repeat left top;
   padding: 45px 33px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
   position: absolute;
@@ -37,7 +37,7 @@ input{
   margin-top: 40px;
 }
 .wlh-loginbox .wlh-login form label.error {
-  background: url("../imgs/wlh/wlh_wen.png") no-repeat 0 4px;
+  background: url("/imgs/admin/wlh_wen.png") no-repeat 0 4px;
   padding-left: 16px;
   display: block;
   width: 287px;
@@ -53,7 +53,7 @@ input{
 .wlh-loginbox .wlh-login form .wlh-text input {
   width: 261px;
   height: 32px;
-  background: url("../imgs/wlh/wlh_user.png") no-repeat 10px 6px;
+  background: url("/imgs/admin/wlh_user.png") no-repeat 10px 6px;
   border: 0px;
   font-size: 16px;
   border: 1px solid #22adec;
@@ -67,7 +67,7 @@ input{
 .wlh-loginbox .wlh-login form .wlh-ps input {
   width: 261px;
   height: 32px;
-  background: url("../imgs/wlh/wlh_mima.png") no-repeat 10px 6px;
+  background: url("/imgs/admin/wlh_mima.png") no-repeat 10px 6px;
   border: 0px;
   font-size: 16px;
   border: 1px solid #22adec;
@@ -155,7 +155,7 @@ input{
 .wlh-loginbox .wlh-reset {
   width: 303px;
   height: 440px;
-  background: #fff url("../imgs/wlh/wlh_login_line.png") no-repeat left top;
+  background: #fff url("/imgs/admin/wlh_login_line.png") no-repeat left top;
   padding: 27px 33px 45px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
   position: absolute;
@@ -182,7 +182,7 @@ input{
 .wlh-loginbox .wlh-reset .wlh-reset-photo .wlh-photo-zhe {
   width: 100%;
   height: 100%;
-  background: url("../imgs/wlh/wlh_resize_bg.png") no-repeat;
+  background: url("/imgs/admin/wlh_resize_bg.png") no-repeat;
   position: absolute;
   left: 0;
   top: 0;
@@ -201,7 +201,7 @@ input{
   margin-top: 20px;
 }
 .wlh-loginbox .wlh-reset form label.error {
-  background: url("../imgs/wlh/wlh_wen.png") no-repeat 0 4px;
+  background: url("/imgs/admin/wlh_wen.png") no-repeat 0 4px;
   padding-left: 16px;
   display: block;
   width: 287px;
@@ -217,7 +217,7 @@ input{
 .wlh-loginbox .wlh-reset form .wlh-text input {
   width: 261px;
   height: 32px;
-  background: url("../imgs/wlh/wlh_user.png") no-repeat 10px 6px;
+  background: url("/imgs/admin/wlh_user.png") no-repeat 10px 6px;
   border: 0px;
   font-size: 16px;
   border: 1px solid #22adec;
@@ -231,7 +231,7 @@ input{
 .wlh-loginbox .wlh-reset form .wlh-ps input {
   width: 261px;
   height: 32px;
-  background: url("../imgs/wlh/wlh_user.png") no-repeat 10px 6px;
+  background: url("/imgs/admin/wlh_user.png") no-repeat 10px 6px;
   border: 0px;
   font-size: 16px;
   border: 1px solid #22adec;
@@ -247,7 +247,7 @@ input{
   height: 49px;
   margin: 0 auto;
   margin-top: 13px;
-  background: url("../imgs/wlh/wlh_resize.png") no-repeat;
+  background: url("/imgs/admin/wlh_resize.png") no-repeat;
   display: block;
   border: 0;
 }
