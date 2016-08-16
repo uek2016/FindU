@@ -1,8 +1,5 @@
 /////////////////    公用库函数
-$.ajaxSetup ({
-         cache: false //关闭AJAX缓存
-});
-	
+
 var API = {
 	////////user 相关的 api
 	checkUser: function(ob) {
@@ -33,7 +30,7 @@ var API = {
 		})
 	},
 	getAllUser: function() {
-	
+
 //		return $.get('/getAllUser',{cache: false}).then(function(data) {
 //			return data;
 //		}, 'json');
@@ -71,7 +68,7 @@ var API = {
 			return data;
 		}, 'json');
 	},
-	
+
 	///////  extra_work 相关的api
 	addExWork: function(){
 		return $.get('/api/exwork/addexwork').done(function(data) {
@@ -97,12 +94,12 @@ var API = {
 	},
 	getWorkByWid:function(wid){
 		return $.get('/api/exwork/getworkbywid',{wid:wid}).done(function(data){
-			return data;	
+			return data;
 		})
 	},
 	getExByMonth:function(month){
 		return $.get('/api/exwork/getMonthWork',{m:month}).done(function(data){
-			return data;	
+			return data;
 		})
 	},
 }
