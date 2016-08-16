@@ -15,8 +15,6 @@
 	var lxr_exlist = function(data){
 		for(var i=0;i<data.length;i++){
 
-			// console.log(data[i].uid)
-
 			if (data[i].uid == 141) {
 
 				var lxr_time2 = new Date(data[i].w_start_time)

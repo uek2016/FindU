@@ -179,7 +179,7 @@ $(function(){
       var lxr_month = date.getMonth()+1;
 
       API.getExByMonth(lxr_month).then(function(data){
-        // console.log(data);
+        $(".lxr_extrawork_ul").html("")
         lxr_exlist(data);
       })
   
@@ -220,7 +220,7 @@ $(function(){
     	ondatechange();
 
 
-         // console.log(targetYear,targetMonth,targetDate)
+      // console.log(targetYear,targetMonth,targetDate)
       
       var lxrlistri = document.getElementsByClassName("lxr_list_ri");
       var lxrlist = document.getElementsByClassName("lxr_extrawork_li");
@@ -247,14 +247,16 @@ $(function(){
     drawcalender();
     ondatechange();
   };
-   
+
+
   
   var lxr_month = date.getMonth()+1;
 
   API.getExByMonth(lxr_month).then(function(data){
-    // console.log(data);
+    $(".lxr_extrawork_ul").html("")
     lxr_exlist(data);
   })
+
 
    
 })
