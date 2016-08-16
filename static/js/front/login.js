@@ -188,11 +188,15 @@ document.addEventListener("plusready",function(){
 						}
 							
 					}else{
-							document.cookie = "__uek__=" + sdata.phone;
-							document.cookie = "___uek___=" + sdata.password;
+
+//							document.cookie = "__uek__=" + sdata.phone;
+//							document.cookie = "___uek___=" + sdata.password;
 							
-						//将uid存储到localStorage.sgqphone中，uid读取方法：JSON.parse(localStorage.sgqphone).uid	
+						
 							
+							Cookies.set('__uek__', data.phone, { expires: 100 });
+							Cookies.set('___uek___', data.password, { expires: 100 });
+							//将uid存储到localStorage.sgqphone中，uid读取方法：JSON.parse(localStorage.sgqphone).uid	
 							localStorage.sgqphone=JSON.stringify(sdata);
 							plus.webview.close("sgq_index");
 						 	var sgq_index=plus.webview.create("http://192.167.1.111:3000/app/","sgq_index");

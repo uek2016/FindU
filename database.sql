@@ -55,7 +55,8 @@ CREATE TABLE `user` (
   `tel` varchar(255) NOT NULL,
   `ctime` bigint(13) NOT NULL,
   `mtime` bigint(13) NOT NULL,
-  `is_del` int(11) NOT NULL
+  `is_del` int(11) NOT NULL,
+  `de_id` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -88,3 +89,40 @@ ALTER TABLE `uek_extra_work`
 --
 ALTER TABLE `user`
   MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT;
+  
+
+DROP TABLE IF EXISTS `uek_department`;
+CREATE TABLE `uek_department` (
+  `de_id` int(11) NOT NULL,
+  `de_name` varchar(255) NOT NULL,
+  `de_description` varchar(255) NOT NULL,
+  `is_del` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `uek_department`
+--
+
+INSERT INTO `uek_department` (`de_id`, `de_name`, `de_description`, `is_del`) VALUES
+(1, '实训部', '', 0),
+(2, '市场部', '', 0);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `uek_department`
+--
+ALTER TABLE `uek_department`
+  ADD PRIMARY KEY (`de_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `uek_department`
+--
+ALTER TABLE `uek_department`
+  MODIFY `de_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;

@@ -4,9 +4,11 @@
   "description": "uek oa system restful api",
   "main": "app.js",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
     "excel-export": "^0.5.1",
     "express": "^4.14.0",
+    "moment": "^2.14.1",
     "mysql": "^2.11.1",
     "node-excel": "^0.5.0",
     "pinyin": "^2.8.0",
