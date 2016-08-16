@@ -13,6 +13,7 @@
 
 	//画表
 	var lxr_exlist = function(data){
+
 		for(var i=0;i<data.length;i++){
 
 			if (data[i].uid == 141) {
@@ -39,9 +40,14 @@
 
 		//小点
 		for (var i =0;i<lxr_have_ri.length;i++) {
+
+			console.log(lxr_have_ri[i])
+
 			$(".col").eq(parseInt(lxr_have_ri[i])+6).find(".lxr_dian").removeClass("lxr_meidian");
 		};
 	
+
+
 	}
 
 
