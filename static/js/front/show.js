@@ -52,7 +52,7 @@ $(function(){
 //获取wid的值
 /*var wlh_url=location.href.split("/");
 var wid=wlh_url[wlh_url.length-1].split(":")[1];*/
-
+         
 	API.getWorkByWid(28).then(function(data){
 		var obj=data[0];
 		//obj={wid:11,uid:142,"w_title":"辅导学生","w_keywords":"在09室辅导学生","w_progress":0,"w_start_time":1471326582820,"w_end_time":1471326683820}
