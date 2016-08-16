@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--<html lang="en" manifest="/index.manifest">-->
+	<html>
 
 	<head>
 		<meta charset="UTF-8">
@@ -16,20 +17,75 @@
 		<script src="/js/moment-with-locales.js" charset="utf-8"></script>
 		<script src="/js/front/main.js" charset="utf-8"></script>
 		<script>
+
+//			if (window.applicationCache.status == window.applicationCache.UPDATEREADY) { 
+//				alert("aaa")
+//			    window.applicationCache.update();   
+//			}
+		$(function(){
+			window.applicationCache.update();
 			
+			window.applicationCache.addEventListener('updateready', function(e) {  
+		        if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {  
+		            window.applicationCache.swapCache();  
+		          	window.location.reload();    
+		        } 
+		    }, false); 
+		    
+
+		})
+			
+			
+//			var appCache = window.applicationCache;  
+//			switch (appCache.status) {  
+//			  case appCache.UNCACHED: // UNCACHED == 0  
+//			    alert( 'UNCACHED');  
+//			    break;  
+//			  case appCache.IDLE: // IDLE == 1  
+//			    alert( 'IDLE');
+//			    window.applicationCache.update();   
+//			    break;  
+//			  case appCache.CHECKING: // CHECKING == 2  
+//			    alert ('CHECKING');  
+//			    window.applicationCache.update();   
+//			    break;  
+//			  case appCache.DOWNLOADING: // DOWNLOADING == 3  
+//			    alert( 'DOWNLOADING'); 
+//			     window.applicationCache.update();   
+//			    break;  
+//			  case appCache.UPDATEREADY:  // UPDATEREADY == 5  
+//			    alert ('UPDATEREADY');  
+//			    window.applicationCache.update();   
+//			    break;  
+//			  case appCache.OBSOLETE: // OBSOLETE == 5  
+//			    alert ('OBSOLETE');  
+//			    window.applicationCache.update();   
+//			    break;  
+//			  default:  
+//			    alert ('UKNOWN CACHE STATUS');  
+//			    window.applicationCache.update();   
+//			    break;  
+//			};
+						
 			document.addEventListener("plusready",function(){
-				
-					
+		
+				var lxr_extra;
+					var current= plus.webview.currentWebview();
 					$('.zkf_me')[0].addEventListener("tap",function(){
 						var zkf_me=plus.webview.create("_www/zkf-me.html","zkf_me");
-							zkf_me.show("slide-in-right");
+						zkf_me.show("slide-in-right");
 					})
 					$(".lxr_extra")[0].addEventListener("tap",function(){
-						var lxr_extra=plus.webview.create("./extra","lxr_extra");
-							lxr_extra.show("slide-in-right");
+						lxr_extra=plus.webview.create("./extra","lxr_extra",{top:0,bottom:50});
+						current.append(lxr_extra)
+						lxr_extra.show("slide-in-right");
+					})
+					$(".tel_index")[0].addEventListener("tap",function(){
+						if(lxr_extra){
+							lxr_extra.close();
+						}
 					})
 					
-				
 			})
 		</script>
 		
@@ -55,11 +111,11 @@
 			</dl>
 		</div>
 		<nav class="mui-bar mui-bar-tab sgq_tab">
-		    <a class="mui-tab-item mui-active">
+		    <a class="mui-tab-item mui-active tel_index">
 		        <span class="mui-icon mui-icon-phone"></span>
 		        <span class="mui-tab-label">通讯录</span>
 		    </a>
-		    <a class="mui-tab-item ">
+		    <a class="mui-tab-item lxr_extra">
 		        <span class="mui-icon mui-icon-email"></span>
 		        <span class="mui-tab-label">加班表</span>
 		    </a>

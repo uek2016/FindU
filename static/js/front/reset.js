@@ -76,29 +76,7 @@ $(function() {
 	});
 
 	$(function() {
-		$(".mylogin").validate({
-			rules: {
-				username: {
-					required: true,
-					maxlength: 15,
-					minlength: 5
-				},
-				userps: {
-					required: true,
-					maxlength: 15,
-					minlength: 6
-				}
-			},
-			messages: {
-				username: {
-					required: "请输入账号！"
-				},
-				userps: {
-					required: "请输入密码！"
-				}
-			}
-		})
-
+		
 		$(".myreset").validate({
 			rules: {
 				username2: {
@@ -141,9 +119,10 @@ $(function() {
 	$(".wlh-reset").addClass("wlh-resetmove");
 	$('#username2').val(JSON.parse(localStorage.sgqphone).phone).attr("readonly", "readonly");
 	$('.sgq-return').click(function(){
-		history.back();
+//		history.back();
+		plus.webview.close("sgq_reset","slide-out-right");
 	});
-	$("<label class='error' for='#username'></label>").appendTo(".wlh-text");
+	
 
 	$(".myreset").submit(function(e) {
 		var us2 = $("[name='username2']").val();
@@ -151,7 +130,9 @@ $(function() {
 		var oup = $("[name='olduserps1']").val();
 		//验证
 		if(up2=="123456"){
-			$(".wlh-ps>label.error").css("display", "block").text("密码不能为123456！");
+			
+			plus.nativeUI.toast("密码不能为123456！");
+			
 			e.preventDefault();
 		}else{
 			$.ajax({
@@ -163,8 +144,9 @@ $(function() {
 							url: "/setPassword",
 							data: "account=" + us2 + "&password=" + up2,
 							success: function() {
+								console.log("密码是"+up2)
 								localStorage.sgqphone = '{"phone":"' + us2 + '","password":"' + up2 + '"}';
-								$(".wlh-ps>label.error").css("display", "none");
+								
 //								$(".wlh-reset").removeClass("wlh-resetmove");
 //								$('#username').val(JSON.parse(localStorage.sgqphone).phone);
 //								$(".wlh-zhezhao").fadeIn(200);
@@ -173,8 +155,10 @@ $(function() {
 //								$(".wlh-login").delay(1000).fadeIn(200);
 //								$(".mylogin>input").val("");
 								var sgq_login=plus.webview.create("./login","sgq_login");
+								plus.nativeUI.toast("请重新登录");
 								sgq_login.show();
 								plus.webview.close("sgq_reset");
+								
 								
 							}
 						})
@@ -187,8 +171,8 @@ $(function() {
 //								$(".wlh-login").removeClass("wlh-loginmove");
 //								clearTimeout(t);
 //							}, 600)
-							
-						$(".wlh-ps>label.error").css("display", "block").text("您输入的密码有误！");
+							plus.nativeUI.toast("您输入的密码有误！");
+						
 
 					}
 				}

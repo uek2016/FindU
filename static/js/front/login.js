@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 document.addEventListener("plusready",function(){
 
-$(function() {
+//$(function() {
 	
 
   
@@ -156,69 +156,52 @@ $(function() {
 			}
 		})
 
-		$(".myreset").validate({
-			rules: {
-				username2: {
-					required: true,
-					maxlength: 15,
-					minlength: 5
-				},
-				userps1: {
-					required: true,
-					maxlength: 15,
-					minlength: 6
-				},
-				userps2: {
-					required: true,
-					equalTo: "#mima"
-				}
-			},
-			messages: {
-				username: {
-					required: "请输入账号！"
-				},
-				userps: {
-					required: "请输入密码！"
-				},
-				userps2: {
-					required: "请重新输入密码！"
-				}
-			}
-		})
 	})
+	if(localStorage.sgqphone){
+		$("[name='username']").val(JSON.parse(localStorage.sgqphone).phone);
+			
+	}
 
 	var wlh_num = 0;
 	
 	$(".wlh-sub").click(function() {
-
-		var us = $("[name='username']").val();
-
 		
+		var us = $("[name='username']").val();
 		var up = $("[name='userps']").val();
+		
 	
 		$.ajax({
 			url: "/checkUser",
 			data: "account=" + us + "&password=" + up,
-			success: function(sdata) {
+			dataType:"jsonp",
+			success: function(sdata) {		
+				console.log(sdata)
 				if(sdata) {
-					
 					if(sdata.password=="e10adc3949ba59abbe56e057f20f883e"){
 						localStorage.sgqphone=JSON.stringify(sdata);
 						var sgq_reset=plus.webview.create("./reset","sgq_reset");
 						sgq_reset.show();
 						sgq_reset.onclose=function(){
 							$(".wlh-ps>label.error").css("display", "none");
-							$("[name='username']").val(JSON.parse(localStorage.sgqphone).phone);
+							$('#username').val(JSON.parse(localStorage.sgqphone).phone);
 							$("[name='userps']").val("");
 						}
 							
 					}else{
+
+//							document.cookie = "__uek__=" + sdata.phone;
+//							document.cookie = "___uek___=" + sdata.password;
+							
 						
+							
 							Cookies.set('__uek__', data.phone, { expires: 100 });
 							Cookies.set('___uek___', data.password, { expires: 100 });
+							//将uid存储到localStorage.sgqphone中，uid读取方法：JSON.parse(localStorage.sgqphone).uid	
 							localStorage.sgqphone=JSON.stringify(sdata);
-							plus.storage.sgqphone=JSON.stringify(sdata);
-						 	plus.webview.close("sgq_login");
+							plus.webview.close("sgq_index");
+						 	var sgq_index=plus.webview.create("http://192.167.1.111:3000/app/","sgq_index");
+							plus.webview.show(sgq_index)
+							plus.webview.close("sgq_login");
 					}
 					
 				} else {
@@ -283,4 +266,4 @@ $(function() {
 
 
 })
-})
+//})

@@ -1,5 +1,8 @@
 /////////////////    公用库函数
-
+$.ajaxSetup ({
+         cache: false //关闭AJAX缓存
+});
+	
 var API = {
 	////////user 相关的 api
 	checkUser: function(ob) {
@@ -30,9 +33,24 @@ var API = {
 		})
 	},
 	getAllUser: function() {
-		return $.get('/getAllUser').then(function(data) {
-			return data;
-		}, 'json');
+	
+//		return $.get('/getAllUser',{cache: false}).then(function(data) {
+//			return data;
+//		}, 'json');
+
+		return $.ajax({
+			data:"a="+Math.random(),
+			type:"get",
+			url:"/getAllUser",
+			dataType:"json",
+			cache:false,
+			success:function(){
+				return data;
+			},
+			error:function(){
+				console.log($(this))
+			}
+		});
 	},
 	getUserById: function(id) {
 		return $.get('/getUserById', {
@@ -73,7 +91,7 @@ var API = {
 		}, 'json');
 	},
 	getAllExWorkByUid:function(uid){
-		return $.get('/api/exwork/getAllworkByUid', {uid,uid}).done(function(data) {
+		return $.get('/api/exwork/getAllworkByUid', {uid:uid}).done(function(data) {
 			return data;
 		}, 'json');
 	},
