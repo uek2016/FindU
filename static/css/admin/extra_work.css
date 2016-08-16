@@ -29,10 +29,11 @@ html,body{
 	
 }
 #table-parent{
-	width:77.777777%;
+	width:77.777777777777777%;
 	height:auto;
 	float: left;
 	min-height:40px;
+	overflow: hidden;
 }
 #table{
 	width:100%;
@@ -40,21 +41,21 @@ html,body{
 	border-collapse: collapse;
 }
 #table th{
-	width:14.2%;
+	width:14.285714%;
 	min-height: 40px;
 	border: 1px solid #000;	
 	height:40px;
 }
 #table td{
-	width:14.2%;
+	width:14.285714%;
 	height: 40px;
 	min-height: 40px;
 	border: 1px solid #000;		
 }
 #totle{
-	width:11.11111%;
+	width:11.1111111111111%;
 	height:auto;
-	float:left;
+	float:right;
 }
 #totle ul{
 	width:100%;
@@ -68,7 +69,6 @@ html,body{
 	box-sizing: border-box;
 	text-align: center;
 	border-bottom:0;
-	border-left:0;
 }
 .extra-more{
 	width:100%;

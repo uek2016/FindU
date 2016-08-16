@@ -83,6 +83,7 @@ $(function(){
 //			设置高度
 			var windowheight=$(window).height();
 			var liheight=windowheight/names.length;
+			
 //		画姓名    
 		$.each(names,function(i,val){
 			var li=$("<li>");
@@ -90,7 +91,7 @@ $(function(){
 			li.css({height:liheight,"line-height":liheight+"px"});
 			li.appendTo($("#name ul"));
 		})
-		
+//画总时间		
 		$.each(totle_time,function(i,val){
 			var li=$("<li>");
 			li.html(val);
@@ -101,28 +102,35 @@ $(function(){
 		console.log(allday);
 		
 		console.log(everyperson);
-		
+//	画表头
+		var xingqi={0:"周日",1:"周一",2:"周二",3:"周三",4:"周四",5:"周五",6:"周六"};
 		var boxheight=$("#table-parent").width()/7;
 		$("#table").css("width",allday.length*boxheight);
 		var tr=$("<tr>");
+		tr.css({height:liheight});
 		$.each(allday,function(j,obj){
 				var li=$("<th>");
-				li.html(obj.display);
-				li.css({height:liheight});
+				li.html(moment(obj.value).date()+"号("+xingqi[moment(obj.value).day()]+")");
 				li.appendTo(tr);
 		})
 		tr.appendTo($("#table"));
 		
-		
+//	画数据	
 		$.each(everyperson,function(i,val){
 			var tr=$("<tr>");
+			tr.css({height:liheight});
 			$.each(val,function(j,obj){
+				console.log(obj)
 				var li=$("<td>");
-				li.html(val);
-				li.css({height:liheight,"line-height":liheight+"px"});
-				li.appendTo();
+				if(typeof obj=="object"){
+					li.html(obj.title);
+				}else{
+					li.html(val);
+				}
+				
+				li.appendTo(tr);
 			})
-			
+			tr.appendTo($("#table"))
 		})
 		
 					
