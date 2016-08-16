@@ -67,12 +67,12 @@ a{
 }
 .lxr_rili_title{
 	height:18px;
-    margin-bottom:1px;
-    padding-top: 3px;
-    border-bottom: 1px solid #c5c5c5;
-    position:relative;
-    width:100%;
-    line-height:15.6px;
+  margin-bottom:1px;
+  padding-top: 3px;
+  border-bottom: 1px solid #c5c5c5;
+  position:relative;
+  width:100%;
+  line-height:15.6px;
 }
 .lxr_gotoday{
 	position: absolute;
@@ -83,18 +83,18 @@ a{
 }
 
 .month-body{
-    position:relative;
-    top:5px;
-    width:100%;
-    height:240px;
+  position:relative;
+  top:5px;
+  width:100%;
+  height:240px;
 }
 
 .row{
-    width:100%;
-    height:40px;
-    border-bottom: 1px solid #ccc;
-    position:absolute;
-    right:0;
+  width:100%;
+  height:40px;
+  border-bottom: 1px solid #ccc;
+  position:absolute;
+  right:0;
 }
 .row1{top:0;}
 .row2{top:42px;}
@@ -102,7 +102,14 @@ a{
 .row4{top:126px;}
 .row5{top:168px;}
 .row6{top:210px;border: 0;}
-.col {width:31px;position:absolute;top:0;height:100%;font-weight:500;font-size:13px;}
+.col {
+	width:31px;
+	position:absolute;
+	top:0;
+	height:100%;
+	font-weight:500;
+	font-size:13px;
+}
 .col1{left:6%;}
 .col2{left:19%;}
 .col3{left:32%;}
@@ -117,7 +124,7 @@ a{
 	text-align:center;
 	line-height: 32px;
 	border-radius: 50%;
-	font-weight: bold;
+	font-weight: 200;
 	font-size: 15px;
 	line-height: 30px;
 }
@@ -140,21 +147,20 @@ a{
 	color: #FFFFFF;
 }
 .today{
-    background:#ff3b30;
-    color:#fff;
+  background:#ff3b30;
+  color:#fff;
 }
 .today-leave{
-    color:#ff3b30;
+  color:#ff3b30;
 }
 .weekend{
   color: #A2A2A2;
 }
 
 .off-month{
-    color:#999;
-    display: none;
+  color:#999;
+  display: none;
 }
-
 
 
 /*加班信息*/
@@ -188,7 +194,7 @@ a{
 	line-height: 48px;
 }
 .lxr_list_time{
-	width: 10%;
+	width: 14%;
 	padding-left: 3%;
 	padding-right: 3%;
 	line-height: 24px;
@@ -200,8 +206,9 @@ a{
 }
 
 .lxr_list_content{
-	width: 60%;
+	width: 56%;
 	padding-left: 4%;
+	line-height: 24px;
 }
 
 .lxr_list_content p:nth-child(3){
