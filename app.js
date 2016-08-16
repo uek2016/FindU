@@ -16,6 +16,9 @@ app.get('/app/login', function(req, res) {
 app.get('/app/reset', function(req, res) {
 	res.sendFile(__dirname + '/front/m_reset.html');
 });
+app.get('/index.manifest', function(req, res) {
+	res.sendFile(__dirname + '/front/index.manifest');
+});
 app.get('/app/extra', function(req, res) {
 	res.sendFile(__dirname + '/front/lxr_extra_work.html');
 });
