@@ -1,6 +1,33 @@
 
 $(function(){
 //	当前月的第一天
+	API.addExWork().then(function(wid) {
+		var base = moment({
+			y: 2016,
+			M: 6,
+			d: 1
+		})
+		var randomdate = base.clone().add(Math.ceil(Math.random() * 30), 'day').valueOf();
+		API.updateExWorkByUid({
+			wid: wid,
+			uid: Math.floor(Math.random() * 4) + 140,
+			w_title: '加班做银泰',
+			w_keywords: '银泰',
+			w_progress: Math.floor(Math.random() * 100),
+			w_start_time: randomdate,
+			w_end_time: randomdate,
+			w_date: randomdate,
+		}).then(function(data) {
+			console.log(data);
+		})
+	});
+	
+	
+	
+	
+	
+	
+	
 	
 	function setMOnth(month){
 		//  即这个月从1日到最后一天
@@ -33,12 +60,7 @@ $(function(){
 			
 			
 //			依据名字的个数设置每个li td th 的高度
-			
-			
-			
-			
-			
-			//每一列中的信息
+//每一列中的信息
 			var everyperson=[];
 				names.forEach(function(name) {
 							//第一个为当前日期
@@ -65,29 +87,35 @@ $(function(){
 //			拿到所有的名字       name
 //			拿到所有的名字相关数组     names 
 //          拿到所有的总时间  totle_time
-//          console.log(everyperson,allday,name,names)
-//          console.log(everyperson);
 				
-				var totle_time=[];
-					$.each(everyperson,function(i,val){
-						var time=0;
-						$.each(val,function(j,obj){
-							if(typeof obj=="object"){
-								var d=moment(obj.start);
-								var d2=moment(obj.end);
-							}
-						})
-						totle_time.push(time);
+			var totle_time=[];
+			$.each(everyperson,function(i,val){
+			var time=0;
+			$.each(val,function(j,obj){
+					if(typeof obj=="object"){
+						var timedur=obj.end-obj.start;
+//						var hour=parseInt(timedur/(1000*3600));
+//						timedur%=(1000*60);
+						var fenzhong=parseInt(timedur/(1000*60));
+						time+=fenzhong;
+					}
+				})
+					time=time/60;
+					time=time.toFixed(1);
+					totle_time.push(time);
 				})
 			
-//			设置高度
-			var windowheight=$(window).height();
-			var liheight=windowheight/(names.length+1);
-			if(liheight<=40){
+			
+//		设置高度
+		var windowheight=$(window).height();
+		var liheight=windowheight/(names.length+1);
+		if(liheight<=40){
 				liheight=40;
-			}
-			$("body").css("line-height",(liheight-2)+"px")
-//		画月份
+		}
+		$("body").css("line-height",(liheight-2)+"px")
+		
+		
+//		画左上角月份
 		var li=$("<li>");
 		li.html(7);
 		li.css({height:liheight,"line-height":liheight+"px"});
@@ -112,14 +140,13 @@ $(function(){
 //画总时间
 		$.each(totle_time,function(i,val){
 			var li=$("<li>");
-			li.html(val);
+			li.html(val+"小时");
 			li.css({height:liheight,"line-height":liheight+"px"});
 			li.appendTo($("#totle ul"));
 		})
-//		
+	
 //		console.log(allday);
-//		
-//		console.log(everyperson);
+		console.log(everyperson);
 //	画表头
 		var xingqi={0:"周日",1:"周一",2:"周二",3:"周三",4:"周四",5:"周五",6:"周六"};
 		var boxheight=$("#table-parent").width()/7;
@@ -134,113 +161,32 @@ $(function(){
 		tr.appendTo($("#table"));
 //		
 //	画数据	
+		function getRandom(){
+			return Math.floor(Math.random()*256);
+		}
+
 		$.each(everyperson,function(i,val){
 			var tr=$("<ul>");
 			$.each(val,function(j,obj){
 				var li=$("<li>");
 				li.css({"width":boxheight,height:liheight});
-				if(typeof obj=="object"){
-					li.html(obj.tilte);
+				if(typeof obj =="object"){
+					var d=moment(obj.start);
+					var d2=moment(obj.end);
+					var str=d.hours()+":"+d.minute()+"-"+d2.hours()+":"+d2.minute()	
+					li.html("<div class='extra-more'><h1>"+str+"</h1><h2>"+obj.title+"</h2><div>");
+					li.css("background","rgb("+getRandom()+","+getRandom()+","+getRandom()+")")
 				}else{
-					li.html(obj.tilte);
+					li.html(obj.title);
 				}
-				
 				li.appendTo(tr);
 			})
 			tr.appendTo($("#table"))
-		})
-//		
+		})	
+		
 					
-					
-			
-	})
+    })
 	
 	
-	
-//	function settable(){
-//		var d=new moment();
-//		var days=d.daysInMonth();
-//		$("#table").css("width",148*days);
-//		$("#table-parent").css("width",149*7+1);
-//	}
-//	settable();
-//	var thobj=[];
-//	function huadate(){
-////		画日期
-//		var d=new moment();
-//		var days=d.daysInMonth();
-//		var dayarr={1:"星期一",2:"星期二",3:"星期三",4:"星期四",5:"星期五",6:"星期六",0:"星期日"};
-//		var tr=$("<tr>");
-//		for(var i=1;i<=days;i++){
-//			var th=$("<th>");
-//			var datestring = moment().year() + '-' + (d.month()+1) + '-' + i;
-//		var everyday = moment(datestring,'YYYY-MM-DD');
-//			th.html(i+"("+dayarr[everyday.day()] +")");
-//			th.attr("day",everyday.valueOf());
-//			thobj.push(th);
-//			th.appendTo(tr);
-//			tr.prependTo($("#table"));	
-//		}
-//	}
-//
-//	
-//	
-//	 
-//	 
-//	 
-//	var totle=[]; 
-//	var totleid=[];
-//	var totleobj=[];
-//	var work=[];
-//	API.getAllUser().then(function(data){
-//		$.each(data,function(i,val){
-//			totle.push(data[i].uname);
-//			totleid.push(data[i].uid);	
-//		});
-//		$.each(totleid,function(i,val){
-//			var li=$("<li>");
-//			li.attr("uid",val);			
-//			li.html(totle[i]);
-//			totleobj.push(li);
-//			li.appendTo($("#name ul"));
-//		});
-//	})
-//	
-//	API.getExByMonth(7).then(function(data){
-//		console.log(data)
-////		依据Uid进行分组，存到work里面
-//		$.each(totleid,function(i,val){
-//			var arr=[];
-//			$.each(data,function(j,n){
-//				if(data[j].uid==totleid[i]){
-//					arr.push(data[j]);
-//				}
-//			})
-//			work.push(arr);
-//		})
-//		console.log(work);
-//		console.log(totleid)
-//		$.each(totleid,function(i,val){
-//			var tr=$("<tr>");
-//			tr.attr("uid",val);	
-//			$.each(thobj,function(j,tharr){
-//				var td=$("<td>");
-////					取到时间,
-//					$.each(work[i], function(h,meiyige) {
-//						console.log(meiyige.w_date,tharr.attr("day"))
-//						if(meiyige.w_date==tharr.attr("day")){
-////							创建一个div，存储具体的信息
-//							
-//						}
-//					});
-//				td.appendTo(tr);				
-//			})
-//			tr.appendTo($("#table"));
-//		})
-//		
-//	});
-//
-//
-//	huadate();
 
 })
