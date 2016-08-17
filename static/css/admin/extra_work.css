@@ -5,6 +5,7 @@ body,h1,h2,h3,h4,h5,h6,ul,li,ol,dl,p,pre{
 	border:0;
 }
 html,body{
+	text-align: center;
 }
 /*顶部*/
 #name{
@@ -16,17 +17,13 @@ html,body{
 	width:100%;
 	height:auto;
 	min-height: 40px;
-	border-bottom:1px solid #000;
 }
 #name ul li{
 	width:100%;
-	min-height:41px;
-	box-sizing: border-box;
+	min-height:40px;
+	box-sizing:border-box;
 	border:1px solid #000;
 	text-align: center;
-	border-bottom:0;
-	border-right:0;
-	
 }
 #table-parent{
 	width:77.777777777777777%;
@@ -36,21 +33,14 @@ html,body{
 	overflow: hidden;
 }
 #table{
-	width:100%;
-	table-layout: fixed;
-	border-collapse: collapse;
+	
 }
-#table th{
-	width:14.285714%;
+#table li{
 	min-height: 40px;
 	border: 1px solid #000;	
-	height:40px;
-}
-#table td{
-	width:14.285714%;
-	height: 40px;
-	min-height: 40px;
-	border: 1px solid #000;		
+	box-sizing: border-box;
+	float: left;
+	overflow: hidden;
 }
 #totle{
 	width:11.1111111111111%;
@@ -60,15 +50,13 @@ html,body{
 #totle ul{
 	width:100%;
 	height:auto;
-	border-bottom:1px solid #000;
 }
 #totle ul li{
 	width:100%;
-	min-height: 41px;
+	min-height: 40px;
 	border:1px solid #000;
 	box-sizing: border-box;
 	text-align: center;
-	border-bottom:0;
 }
 .extra-more{
 	width:100%;

@@ -82,57 +82,74 @@ $(function(){
 			
 //			设置高度
 			var windowheight=$(window).height();
-			var liheight=windowheight/names.length;
+			var liheight=windowheight/(names.length+1);
+			if(liheight<=40){
+				liheight=40;
+			}
+			$("body").css("line-height",(liheight-2)+"px")
+//		画月份
+		var li=$("<li>");
+		li.html(7);
+		li.css({height:liheight,"line-height":liheight+"px"});
+		li.appendTo($("#name ul"));	
+		
 			
 //		画姓名    
 		$.each(names,function(i,val){
 			var li=$("<li>");
 			li.html(val);
-			li.css({height:liheight,"line-height":liheight+"px"});
+			li.css({height:liheight});
 			li.appendTo($("#name ul"));
 		})
-//画总时间		
+		
+		
+//		画时间总计
+		var li=$("<li>");
+		li.html("总计");
+		li.css({height:liheight,"line-height":liheight+"px"});
+		li.appendTo($("#totle ul"));
+		
+//画总时间
 		$.each(totle_time,function(i,val){
 			var li=$("<li>");
 			li.html(val);
 			li.css({height:liheight,"line-height":liheight+"px"});
 			li.appendTo($("#totle ul"));
 		})
-		
-		console.log(allday);
-		
-		console.log(everyperson);
+//		
+//		console.log(allday);
+//		
+//		console.log(everyperson);
 //	画表头
 		var xingqi={0:"周日",1:"周一",2:"周二",3:"周三",4:"周四",5:"周五",6:"周六"};
 		var boxheight=$("#table-parent").width()/7;
 		$("#table").css("width",allday.length*boxheight);
-		var tr=$("<tr>");
-		tr.css({height:liheight});
+		var tr=$("<ul>");
 		$.each(allday,function(j,obj){
-				var li=$("<th>");
+				var li=$("<li>");
+				li.css({"width":boxheight,height:liheight});
 				li.html(moment(obj.value).date()+"号("+xingqi[moment(obj.value).day()]+")");
 				li.appendTo(tr);
 		})
 		tr.appendTo($("#table"));
-		
+//		
 //	画数据	
 		$.each(everyperson,function(i,val){
-			var tr=$("<tr>");
-			tr.css({height:liheight});
+			var tr=$("<ul>");
 			$.each(val,function(j,obj){
-				console.log(obj)
-				var li=$("<td>");
+				var li=$("<li>");
+				li.css({"width":boxheight,height:liheight});
 				if(typeof obj=="object"){
-					li.html(obj.title);
+					li.html(obj.tilte);
 				}else{
-					li.html(val);
+					li.html(obj.tilte);
 				}
 				
 				li.appendTo(tr);
 			})
 			tr.appendTo($("#table"))
 		})
-		
+//		
 					
 					
 			
