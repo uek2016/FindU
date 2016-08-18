@@ -5,7 +5,7 @@ body,h1,h2,h3,h4,h5,h6,ul,li,ol,dl,p,pre{
 	border:0;
 }
 html,body{
-
+	font-family: "微软雅黑";
 	text-align: center;
 }
 /*顶部*/
@@ -23,7 +23,7 @@ html,body{
 	width:100%;
 	min-height:40px;
 	box-sizing:border-box;
-	border:1px solid #000;
+	border:1px solid #666;
 	text-align: center;
 }
 #table-parent{
@@ -38,7 +38,7 @@ html,body{
 }
 #table li{
 	min-height: 40px;
-	border: 1px solid #000;	
+	border: 1px solid #666;	
 	box-sizing: border-box;
 	float: left;
 	overflow: hidden;
@@ -56,7 +56,7 @@ html,body{
 #totle ul li{
 	width:100%;
 	min-height: 40px;
-	border:1px solid #000;
+	border:1px solid #666;
 	box-sizing: border-box;
 	text-align: center;
 }
@@ -70,11 +70,26 @@ html,body{
 	right:0;
 	margin:auto auto;
 }
-.extra-more h1,h2{
+.extra-more h1{
 	height:20px;
 	line-height: 20px;
-	font-size: 16px;
-	color: #fff;
-
+	font-size: 14px;
+	font-weight: normal;
+}
+.extra-more h2{
+	height:20px;
+	font-size: 14px;
+	line-height: 20px;
+}
+.ms-del{
+	position:absolute;
+	right:0;
+	bottom:0;
+	z-index: 10000;
+	width:20px;
+	height:20px;
+	background-image:url(/imgs/admin/del.png);
+	background-size: 100%;
+	cursor: pointer;
 }
 
