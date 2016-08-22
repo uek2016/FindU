@@ -51,3 +51,13 @@ input[type='text']{
 .mui-btn-block{
 	margin-top:34px;
 }
+
+.mui-btn, button{
+	width:48%;
+	padding-top:13px;
+	padding-bottom:13px;
+	margin-top:20px;
+}
+#del{
+	margin-left:1%;
+}
