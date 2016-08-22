@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<title>Document</title>
 		<script src="/js/jquery.js"></script>
+		<script src="/js/_utility.js" charset="utf-8"></script>
 		<script src="/js/jquery.validate.js"></script>
 		<script src="/js/messages_zh.js"></script>
 		<link rel="stylesheet" href="/css/front/login.css">
-		<!--<script src="../app.js"></script>-->
 		<script src="/js/mui.min.js"></script>
 		<script src="/js/front/reset.js"></script>
+		<script src="/js/store.js"></script>
 		<style>
 			html,body,.wlh-loginbox{
 				height: 100%;
@@ -25,30 +25,6 @@
 
 	<body>
 		<div class="wlh-loginbox">
-			<!--提示重置成功 start-->
-			<div class="wlh-zhezhao">
-				<!--<div class="wlh-resetbox">
-					<div class="wlh-reset-title">
-						<img src="/imgs/front/wlh_reset_title.png" alt="">
-					</div>
-					<p>
-						您的密码已重置为默认密码是否马上修改
-					</p>
-					<div class="wlh-xiugai">
-						<img src="/imgs/front/wlh_xiugai.png" alt="">
-					</div>
-				</div>-->
-				<div class="wlh-resetbox2">
-					<div class="wlh-reset-title">
-						<img src="/imgs/front/wlh_reset_title.png" alt="">
-					</div>
-					<p>
-						您的密码已修改成功，请重新登录
-					</p>
-				</div>
-			</div>
-			<!--提示重置成功 end-->
-
 			<!--密码重置 satrt-->
 			<div class="wlh-reset">
 				<div class="sgq-return">返回</div>
@@ -72,8 +48,9 @@
 					<div class="wlh-ps">
 						<input type="password" id="mima" placeholder="请输入密码！" name="userps1">
 					</div>
-					<div class="wlh-ps">
+					<div class="wlh-ps wlh-alert">
 						<input type="password" placeholder="请输入密码！" name="userps2">
+						<label class="errorinfo" style="display: none;"></label>
 					</div>
 					<input type="submit" value="" class="wlh-btn">
 

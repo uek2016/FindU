@@ -20,6 +20,12 @@ app.use(cookieParser());
 app.get('/app/login', function(req, res) {
 	res.sendFile(__dirname + '/front/m_login.html');
 });
+app.get('/app/zkf-me', function(req, res) {
+	res.sendFile(__dirname + '/front/zkf-me.html');
+});
+app.get('/app/slide', function(req, res) {
+	res.sendFile(__dirname + '/front/slide.html');
+});
 app.get('/app/reset', function(req, res) {
 	res.sendFile(__dirname + '/front/m_reset.html');
 });
@@ -36,11 +42,7 @@ app.get('/app/jiabanshow', function(req, res) {
 	res.sendFile(__dirname + '/front/jiaban_show.html');
 });
 app.get('/app', function(req, res) {
-	// if(req.cookies.__uek__){
 	res.sendFile(__dirname + '/front/m_index.html');
-	// }else{
-	// res.redirect('/app/login');
-	// }
 });
 
 
@@ -85,7 +87,7 @@ var connection = mysql.createConnection({
 	host: 'localhost',
 	port: '3306',
 	user: 'root',
-	password: 'root',
+	password: '',
 	database: 'uek',
 	// socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock',
 });
@@ -95,8 +97,8 @@ app.get('/checkUser', function(req, res) {
 	var hash = crypto.createHash("md5");
 	hash.update(new Buffer(req.query.password, "binary"));
 	var encode = hash.digest('hex');
-
-	connection.query('SELECT ?? FROM user where phone = ?', ['password', req.query.account], function(err, result) {
+ 
+	connection.query('SELECT phone, password, uid  FROM user where phone = ?', [req.query.account], function(err, result) {
 		if(result[0] && (result[0].password === encode)) {
 			res.jsonp({
 				phone: req.query.account,

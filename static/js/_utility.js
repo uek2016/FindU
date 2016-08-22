@@ -3,7 +3,7 @@
 var API = {
 	////////user 相关的 api
 	checkUser: function(ob) {
-		return $.get('/checkUser', ob).then(function(data) {
+		return $.get('/checkUser',ob).then(function(data) {
 			return data;
 		});
 	},
@@ -30,24 +30,9 @@ var API = {
 		})
 	},
 	getAllUser: function() {
-
-//		return $.get('/getAllUser',{cache: false}).then(function(data) {
-//			return data;
-//		}, 'json');
-
-		return $.ajax({
-			data:"a="+Math.random(),
-			type:"get",
-			url:"/getAllUser",
-			dataType:"json",
-			cache:false,
-			success:function(){
-				return data;
-			},
-			error:function(){
-				console.log($(this))
-			}
-		});
+		return $.get('/getAllUser').then(function(data) {
+			return data;
+		}, 'json');
 	},
 	getUserById: function(id) {
 		return $.get('/getUserById', {

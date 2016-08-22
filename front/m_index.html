@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<!--<html lang="en" manifest="/index.manifest">-->
-	<html>
-
+<html manifest="/index.manifest">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
@@ -11,83 +9,13 @@
 		<link href="/css/mui.min.css" rel="stylesheet" />
 		<link rel="apple-touch-icon" href="/imgs/front/findu.png">
 		<title>uek</title>
-		<!-- <script src="/js/mui.min.js" charset="utf-8"></script> -->
 		<script src="/js/jquery.js" charset="utf-8"></script>
 		<script src="/js/_utility.js" charset="utf-8"></script>
 		<script src="/js/moment-with-locales.js" charset="utf-8"></script>
+		<script>var sgq_online=false;</script>
 		<script src="/js/front/main.js" charset="utf-8"></script>
-		<script>
-
-//			if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
-//				alert("aaa")
-//			    window.applicationCache.update();
-//			}
-//		$(function(){
-//			window.applicationCache.update();
-//
-//			window.applicationCache.addEventListener('updateready', function(e) {
-//		        if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
-//		            window.applicationCache.swapCache();
-//		          	window.location.reload();
-//		        }
-//		    }, false);
-//
-//
-//		})
-
-
-//			var appCache = window.applicationCache;
-//			switch (appCache.status) {
-//			  case appCache.UNCACHED: // UNCACHED == 0
-//			    alert( 'UNCACHED');
-//			    break;
-//			  case appCache.IDLE: // IDLE == 1
-//			    alert( 'IDLE');
-//			    window.applicationCache.update();
-//			    break;
-//			  case appCache.CHECKING: // CHECKING == 2
-//			    alert ('CHECKING');
-//			    window.applicationCache.update();
-//			    break;
-//			  case appCache.DOWNLOADING: // DOWNLOADING == 3
-//			    alert( 'DOWNLOADING');
-//			     window.applicationCache.update();
-//			    break;
-//			  case appCache.UPDATEREADY:  // UPDATEREADY == 5
-//			    alert ('UPDATEREADY');
-//			    window.applicationCache.update();
-//			    break;
-//			  case appCache.OBSOLETE: // OBSOLETE == 5
-//			    alert ('OBSOLETE');
-//			    window.applicationCache.update();
-//			    break;
-//			  default:
-//			    alert ('UKNOWN CACHE STATUS');
-//			    window.applicationCache.update();
-//			    break;
-//			};
-
-			document.addEventListener("plusready",function(){
-
-				var lxr_extra;
-					var current= plus.webview.currentWebview();
-					$('.zkf_me')[0].addEventListener("tap",function(){
-						var zkf_me=plus.webview.create("_www/zkf-me.html","zkf_me");
-						zkf_me.show("slide-in-right");
-					})
-					$(".lxr_extra")[0].addEventListener("tap",function(){
-						lxr_extra=plus.webview.create("./extra","lxr_extra",{top:0,bottom:50});
-						current.append(lxr_extra)
-						lxr_extra.show("slide-in-right");
-					})
-					$(".tel_index")[0].addEventListener("tap",function(){
-						if(lxr_extra){
-							lxr_extra.close();
-						}
-					})
-
-			})
-		</script>
+		<script src="/js/front/offline_main.js" charset="utf-8"></script>
+		<script src="/js/store.js"></script>
 
 		<link rel="stylesheet" href="/css/front/main.css">
 		<link rel="stylesheet" href="/css/iconfont.css">
@@ -95,9 +23,7 @@
 
 	<body>
 		<div class="header">
-			<a class="lxr_change iconfont icon-xiugaimima" href="/app/login"></a>
 			<span class="lxr_people">Connect Unique</span>
-			<a class="lxr_information" href="/app/copyright">@</a>
 		</div>
 
 		<div class="sub-header">
@@ -111,7 +37,7 @@
 			</dl>
 		</div>
 		<nav class="mui-bar mui-bar-tab sgq_tab">
-		    <a  href="/app/" class="mui-tab-item mui-active tel_index">
+		    <a  href="/app" class="mui-tab-item mui-active tel_index">
 		        <span class="mui-icon mui-icon-phone"></span>
 		        <span class="mui-tab-label">通讯录</span>
 		    </a>
@@ -119,7 +45,7 @@
 		        <span class="mui-icon mui-icon-email"></span>
 		        <span class="mui-tab-label">加班表</span>
 		    </a>
-		    <a href="/app/me" class="mui-tab-item zkf_me">
+		    <a href="/app/zkf-me" class="mui-tab-item zkf_me">
 		        <span class="mui-icon mui-icon-gear"></span>
 		        <span class="mui-tab-label">我</span>
 		    </a>

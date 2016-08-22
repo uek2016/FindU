@@ -1,21 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<title>Document</title>
 		<script src="/js/jquery.js"></script>
+		<script src="/js/_utility.js" charset="utf-8"></script>
+		<script src="/js/js.cookie.js" charset="utf-8"></script>
 		<script src="/js/jquery.validate.js"></script>
 		<script src="/js/messages_zh.js"></script>
 		<link rel="stylesheet" href="/css/front/login.css">
-		<!--<script src="../app.js"></script>-->
 		<script src="/js/mui.min.js"></script>
 		<script src="/js/front/login.js"></script>
+		<script src="/js/store.js"></script>
 	</head>
 
 	<body>
 		<div class="wlh-loginbox">
+			<!--提示重置成功 start-->
+			<div class="wlh-zhezhao">
+				<div class="wlh-resetbox2">
+					<div class="wlh-reset-title">
+						<img src="/imgs/front/wlh_reset_title.png" alt="">
+					</div>
+					<p>
+						您的密码已修改成功，请重新登录
+					</p>
+				</div>
+			</div>
+			<!--提示重置成功 end-->
 			<!--登录 start-->
 			<div class="wlh-login">
 				<div class="wlh-logo">
@@ -34,69 +47,12 @@
 					</div>
 
 					<div class="wlh-btn">
-						<!--<input class="wlh-res" type="button" value="忘记密码" name="res">-->
 						<input class="wlh-sub" type="submit" value="提交" name="sub">
 					</div>
 
 				</form>
 			</div>
-			<!--登录 end-->
-
-			<!--提示重置成功 start-->
-			<!--<div class="wlh-zhezhao">-->
-				<!--<div class="wlh-resetbox">
-					<div class="wlh-reset-title">
-						<img src="/imgs/front/wlh_reset_title.png" alt="">
-					</div>
-					<p>
-						您的密码已重置为默认密码是否马上修改
-					</p>
-					<div class="wlh-xiugai">
-						<img src="/imgs/front/wlh_xiugai.png" alt="">
-					</div>
-				</div>
-				<div class="wlh-resetbox2">
-					<div class="wlh-reset-title">
-						<img src="/imgs/front/wlh_reset_title.png" alt="">
-					</div>
-					<p>
-						您的密码已修改成功，请重新登录
-					</p>
-				</div>
-			</div>-->
-			<!--提示重置成功 end-->
-
-			<!--密码重置 satrt-->
-			<!--<div class="wlh-reset">-->
-				<!--<div class="sgq-return">返回</div>
-				<div class="wlh-reset-photo">
-					<div class="wlh-photo">
-						<img src="/imgs/front/wlh_photo.png" alt="">
-					</div>
-					<div class="wlh-photo-zhe"></div>
-				</div>
-				<div class="wlh-resize-title">
-					<p>RESET MY PASSWORD</p>
-					<p>重置密碼</p>
-				</div>
-				<form action="" method="post" name="myreset" class="myreset">
-					<div class="wlh-text">
-						<input id="username2" type="text" placeholder="请输入账号！" name="username2">
-					</div>
-					<div class="wlh-ps">
-						<input type="password" id="omima" placeholder="请输入原密码！" name="olduserps1">
-					</div>
-					<div class="wlh-ps">
-						<input type="password" id="mima" placeholder="请输入密码！" name="userps1">
-					</div>
-					<div class="wlh-ps">
-						<input type="password" placeholder="请输入密码！" name="userps2">
-					</div>
-					<input type="submit" value="" class="wlh-btn">
-
-				</form>
-			</div>-->
-			<!--密码重置 end-->
+		
 		</div>
 	</body>
 

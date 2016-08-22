@@ -172,6 +172,7 @@ input {
 	position: absolute;
 	left: 0;
 	top: 0;
+	z-index: 10;
 	display: none;
 }
 
@@ -225,7 +226,6 @@ input {
 	background: #fff;
 	border-radius: 18px;
 	position: absolute;
-	display: none;
 	z-index: 10;
 	left: 0;
 	right: 0;
@@ -407,4 +407,18 @@ input {
 	background-size: cover;
 	display: block;
 	border: 0;
+}
+.wlh-alert{
+	position: relative;
+}
+.wlh-alert .errorinfo{
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	font-size: 0.22rem;
+	margin-top: 0.15rem;
+    line-height: 0.32rem;
+	color: #4e4e4e;
+	height: 100%;
 }

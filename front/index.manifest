@@ -1,15 +1,26 @@
 CACHE MANIFEST
-#11111111111111
+#11111111111
 /app/
+/app/zkf-me
+/app/slide
 /css/mui.min.css
 /css/front/main.css
 /css/iconfont.css
 /js/mui.min.js
-/js/front/main.js
 /js/jquery.js
 /js/_utility.js
 /fonts/mui.ttf
+/js/front/offline_main.js
 /imgs/front/findu.png
+/js/moment-with-locales.js
+/js/store.js
+/css/front/zkf-me.css
+/js/front/zkf-me.js
+/imgs/front/bq.jpg
+/imgs/front/mm.jpg
+/imgs/front/bq.jpg
+NETWORK:
+*
 
 
 
