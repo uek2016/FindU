@@ -5,74 +5,91 @@ body,h1,h2,h3,h4,h5,h6,ul,li,ol,dl,p,pre{
 	border:0;
 }
 html,body{
+	font-family: "微软雅黑";
+	text-align: center;
 }
 /*顶部*/
 #name{
-	width:148px;
+	width:11.1111%;
 	height:auto;
-	position: fixed;
-	left:0;
-	top:0;
+	float: left;
 }
 #name ul{
 	width:100%;
 	height:auto;
-	border-bottom:1px solid #000;
-}
-#name #month{
-	height:81px;
-	line-height: 81px;
+	min-height: 40px;
 }
 #name ul li{
 	width:100%;
-	height:149px;
-	box-sizing: border-box;
-	border:1px solid #000;
-	line-height: 148px;
+	min-height:40px;
+	box-sizing:border-box;
+	border:1px solid #666;
 	text-align: center;
-	border-bottom:0;
 }
 #table-parent{
+	width:77.777777777777777%;
+	height:auto;
+	float: left;
+	min-height:40px;
 	overflow: hidden;
-	margin:0 auto;
 }
 #table{
-	table-layout: fixed;
-	border-collapse: collapse;
 	
 }
-#table th{
-	width:148px;
-	height:80px;
-	border: 1px solid #000;	
-}
-#table td{
-	width:148px;
-	height:148px;
-	border: 1px solid #000;		
+#table li{
+	min-height: 40px;
+	border: 1px solid #666;	
+	box-sizing: border-box;
+	float: left;
+	overflow: hidden;
+	position:relative;
 }
 #totle{
-	width:149px;
+	width:11.1111111111111%;
 	height:auto;
-	position: fixed;
-	right:0;
-	top:0;
+	float:right;
 }
 #totle ul{
 	width:100%;
 	height:auto;
-	border-bottom:1px solid #000;
-}
-#totle #time{
-	height:81px;
-	line-height: 81px;
 }
 #totle ul li{
 	width:100%;
-	height:149px;
+	min-height: 40px;
+	border:1px solid #666;
 	box-sizing: border-box;
-	border:1px solid #000;
-	line-height: 148px;
 	text-align: center;
-	border-bottom:0;
 }
+.extra-more{
+	width:100%;
+	height:40px;
+	position:absolute;
+	left:0;
+	top:0;
+	bottom: 0;
+	right:0;
+	margin:auto auto;
+}
+.extra-more h1{
+	height:20px;
+	line-height: 20px;
+	font-size: 14px;
+	font-weight: normal;
+}
+.extra-more h2{
+	height:20px;
+	font-size: 14px;
+	line-height: 20px;
+}
+.ms-del{
+	position:absolute;
+	right:0;
+	bottom:0;
+	z-index: 10000;
+	width:20px;
+	height:20px;
+	background-image:url(/imgs/admin/del.png);
+	background-size: 100%;
+	cursor: pointer;
+}
+
